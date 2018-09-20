@@ -46,16 +46,16 @@
         var table = layui.table;
         table.render({
             elem: '#student' //指定原始表格元素选择器（推荐id选择器）
-            ,url: 'http://localhost:8080/configList'
+            ,url: 'http://localhost:8080/teacher/queryallpage'
             ,cols: [[
                 {type: 'checkbox', fixed: 'left'}  //选择框
-                ,{field:'stuId',  title: '学号', sort: true}
-                ,{field:'stuName',  title: '学生姓名'}
-                ,{field:'stuSex',  title: '性别'}
-                ,{field:'stuPhone', title: '手机号'}
-                // ,{field:'stu_classid', title: '班级', minWidth: 150}
-                ,{field:'stuDormitoryid', title: '宿舍号'}
-                ,{field:'stuStatus', title: '状态'}
+                ,{field:'worknumber',  title: '工号', sort: true}
+                ,{field:'teaName',  title: '教师姓名'}
+                ,{field:'teaSex',  title: '性别'}
+                ,{field:'teaPhone', title: '手机号'}
+                ,{field:'teaNation', title: '民族'}
+                ,{field:'teaJobtitle', title: '职称'}
+                ,{field:'teaRkzk', title: '任课状况'}
                 ,{fixed: 'right', align:'center', toolbar: '#barDemo'}
             ]]
             ,page: true

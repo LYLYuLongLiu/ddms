@@ -26,6 +26,11 @@ public class TeacherController {
     @Autowired
     private TeacherService teacherService;
 
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String teacherPage() {
+        return "teacher/teacher_list";
+    }
     /**
      * t添加教师
      * @date 10:55 2018/9/19
@@ -94,27 +99,30 @@ public class TeacherController {
     /**
      * 无条件分页
      *
-     * @param []
+     * @param page  当前页数
+     * @param limit  显示行数
      * @return cn.wisdsoft.pojo.PageResult<cn.wisdsoft.ddms.pojo.Teacher>
-     * @date 21:35 2018/9/19
+     * @date 20:24 2018/9/20
      */
     @RequestMapping(value = "/queryallpage", method = RequestMethod.GET)
     @ResponseBody
-    public PageResult<Teacher> queryAllPageTeacher(Integer page, Integer rows) {
-        return teacherService.queryAllPageTeacher(page, rows);
+    public PageResult<Teacher> queryAllPageTeacher(Integer page, Integer limit) {
+        return teacherService.queryAllPageTeacher(page, limit);
     }
 
     /**
-     * 通过条件查询分页
+     * 筛选分页
      *
-     * @param [conditionpage 查询条件]
+     * @param page  当前页数
+     * @param limit  显示行数
+     * @param conditionpage
      * @return cn.wisdsoft.pojo.PageResult<cn.wisdsoft.ddms.pojo.Teacher>
-     * @date 21:41 2018/9/19
+     * @date 20:24 2018/9/20
      */
     @RequestMapping(value = "/queryconditionpage", method = RequestMethod.GET)
     @ResponseBody
-    public PageResult<Teacher> queryConditionpagePageTeacher(String conditionpage) {
-        return teacherService.queryConditionPageTeacher(conditionpage);
+    public PageResult<Teacher> queryConditionpagePageTeacher(Integer page, Integer limit, String conditionpage) {
+        return teacherService.queryConditionPageTeacher(page, limit, conditionpage);
     }
 
 }

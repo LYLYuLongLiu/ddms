@@ -59,7 +59,7 @@ public class AdministatorsController {
      * @param
      * @return java.lang.String
      */
-    @RequestMapping(value = "/login/loginToIndex")
+    @RequestMapping(value = "/loginToIndex")
     public String loginToIndex(){
         return "common/index";
     }

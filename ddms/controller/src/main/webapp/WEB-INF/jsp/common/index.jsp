@@ -52,7 +52,7 @@
             <ul class="layui-nav layui-nav-tree" lay-filter="test">
                 <li class="layui-nav-item"><a data-id="1" data-uri="college" class="my-demo">学院管理</a></li>
                 <li class="layui-nav-item"><a data-id="2" data-uri="major" class="my-demo">专业管理</a></li>
-                <li class="layui-nav-item"><a data-id="3" data-uri="teacher" class="my-demo">教师管理</a></li>
+                <li class="layui-nav-item"><a data-id="3" data-uri="teacher/" class="my-demo">教师管理</a></li>
                 <li class="layui-nav-item"><a data-id="4" data-uri="student" class="my-demo">学生管理</a></li>
                 <li class="layui-nav-item"><a data-id="5" data-uri="subject" class="my-demo">科目管理</a></li>
                 <li class="layui-nav-item"><a data-id="6" data-uri="classroom" class="my-demo">教室管理</a></li>
@@ -94,7 +94,7 @@
             tabAdd: function(title, id, uri) {
                 element.tabAdd('demo', {
                     title: title,
-                    content: '<iframe frameborder="0" name="content" scrolling="no" width="100%" height="600px" src="http://localhost:8080/'+uri+'/"'+'></iframe>', //支持传入html
+                    content: '<iframe frameborder="0" name="content" scrolling="no" width="100%" height="600px" src="http://localhost:8080/'+uri+'"></iframe>', //支持传入html
                     id: id
                 })
             },

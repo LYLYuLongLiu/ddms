@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="/js/layui/css/layui.css"  media="all">
 </head>
 <body>
-<form action="/login/loginToIndex" method="post" id="form1">
+<form action="/loginToIndex" method="post" id="form1">
     <div style="text-align: center;">
         <table style="text-align: center;">
             <tr>
