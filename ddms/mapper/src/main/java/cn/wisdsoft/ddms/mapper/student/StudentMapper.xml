@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.wisdsoft.ddms.mapper.student.StudentMapper" >
+  <resultMap id="BaseResultMap" type="cn.wisdsoft.ddms.pojo.Student" >
+    <id column="stu_id" property="stuId" jdbcType="VARCHAR" />
+    <result column="stu_name" property="stuName" jdbcType="VARCHAR" />
+    <result column="stu_picture" property="stuPicture" jdbcType="BIT" />
+    <result column="stu_sex" property="stuSex" jdbcType="CHAR" />
+    <result column="stu_brithDate" property="stuBrithdate" jdbcType="DATE" />
+    <result column="stu_native" property="stuNative" jdbcType="VARCHAR" />
+    <result column="stu_entranceTime" property="stuEntrancetime" jdbcType="DATE" />
+    <result column="stu_graduationTime" property="stuGraduationtime" jdbcType="DATE" />
+    <result column="stu_politicalFace" property="stuPoliticalface" jdbcType="VARCHAR" />
+    <result column="stu_familyNum" property="stuFamilynum" jdbcType="VARCHAR" />
+    <result column="stu_address" property="stuAddress" jdbcType="VARCHAR" />
+    <result column="stu_phone" property="stuPhone" jdbcType="INTEGER" />
+    <result column="stu_idCard" property="stuIdcard" jdbcType="VARCHAR" />
+    <result column="stu_classid" property="stuClassid" jdbcType="INTEGER" />
+    <result column="stu_dormitoryid" property="stuDormitoryid" jdbcType="INTEGER" />
+    <result column="stu_national" property="stuNational" jdbcType="VARCHAR" />
+    <result column="stu_status" property="stuStatus" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    stu_id, stu_name, stu_picture, stu_sex, stu_brithDate, stu_native, stu_entranceTime, 
+    stu_graduationTime, stu_politicalFace, stu_familyNum, stu_address, stu_phone, stu_idCard, 
+    stu_classid, stu_dormitoryid, stu_national, stu_status, remark
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.wisdsoft.ddms.pojo.StudentExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from student
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from student
+    where stu_id = #{stuId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from student
+    where stu_id = #{stuId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.wisdsoft.ddms.pojo.StudentExample" >
+    delete from student
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.wisdsoft.ddms.pojo.Student" >
+    insert into student (stu_id, stu_name, stu_picture, 
+      stu_sex, stu_brithDate, stu_native, 
+      stu_entranceTime, stu_graduationTime, stu_politicalFace, 
+      stu_familyNum, stu_address, stu_phone, 
+      stu_idCard, stu_classid, stu_dormitoryid, 
+      stu_national, stu_status, remark
+      )
+    values (#{stuId,jdbcType=VARCHAR}, #{stuName,jdbcType=VARCHAR}, #{stuPicture,jdbcType=BIT}, 
+      #{stuSex,jdbcType=CHAR}, #{stuBrithdate,jdbcType=DATE}, #{stuNative,jdbcType=VARCHAR}, 
+      #{stuEntrancetime,jdbcType=DATE}, #{stuGraduationtime,jdbcType=DATE}, #{stuPoliticalface,jdbcType=VARCHAR}, 
+      #{stuFamilynum,jdbcType=VARCHAR}, #{stuAddress,jdbcType=VARCHAR}, #{stuPhone,jdbcType=INTEGER}, 
+      #{stuIdcard,jdbcType=VARCHAR}, #{stuClassid,jdbcType=INTEGER}, #{stuDormitoryid,jdbcType=INTEGER}, 
+      #{stuNational,jdbcType=VARCHAR}, #{stuStatus,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.wisdsoft.ddms.pojo.Student" >
+    insert into student
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="stuId != null" >
+        stu_id,
+      </if>
+      <if test="stuName != null" >
+        stu_name,
+      </if>
+      <if test="stuPicture != null" >
+        stu_picture,
+      </if>
+      <if test="stuSex != null" >
+        stu_sex,
+      </if>
+      <if test="stuBrithdate != null" >
+        stu_brithDate,
+      </if>
+      <if test="stuNative != null" >
+        stu_native,
+      </if>
+      <if test="stuEntrancetime != null" >
+        stu_entranceTime,
+      </if>
+      <if test="stuGraduationtime != null" >
+        stu_graduationTime,
+      </if>
+      <if test="stuPoliticalface != null" >
+        stu_politicalFace,
+      </if>
+      <if test="stuFamilynum != null" >
+        stu_familyNum,
+      </if>
+      <if test="stuAddress != null" >
+        stu_address,
+      </if>
+      <if test="stuPhone != null" >
+        stu_phone,
+      </if>
+      <if test="stuIdcard != null" >
+        stu_idCard,
+      </if>
+      <if test="stuClassid != null" >
+        stu_classid,
+      </if>
+      <if test="stuDormitoryid != null" >
+        stu_dormitoryid,
+      </if>
+      <if test="stuNational != null" >
+        stu_national,
+      </if>
+      <if test="stuStatus != null" >
+        stu_status,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="stuId != null" >
+        #{stuId,jdbcType=VARCHAR},
+      </if>
+      <if test="stuName != null" >
+        #{stuName,jdbcType=VARCHAR},
+      </if>
+      <if test="stuPicture != null" >
+        #{stuPicture,jdbcType=BIT},
+      </if>
+      <if test="stuSex != null" >
+        #{stuSex,jdbcType=CHAR},
+      </if>
+      <if test="stuBrithdate != null" >
+        #{stuBrithdate,jdbcType=DATE},
+      </if>
+      <if test="stuNative != null" >
+        #{stuNative,jdbcType=VARCHAR},
+      </if>
+      <if test="stuEntrancetime != null" >
+        #{stuEntrancetime,jdbcType=DATE},
+      </if>
+      <if test="stuGraduationtime != null" >
+        #{stuGraduationtime,jdbcType=DATE},
+      </if>
+      <if test="stuPoliticalface != null" >
+        #{stuPoliticalface,jdbcType=VARCHAR},
+      </if>
+      <if test="stuFamilynum != null" >
+        #{stuFamilynum,jdbcType=VARCHAR},
+      </if>
+      <if test="stuAddress != null" >
+        #{stuAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="stuPhone != null" >
+        #{stuPhone,jdbcType=INTEGER},
+      </if>
+      <if test="stuIdcard != null" >
+        #{stuIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="stuClassid != null" >
+        #{stuClassid,jdbcType=INTEGER},
+      </if>
+      <if test="stuDormitoryid != null" >
+        #{stuDormitoryid,jdbcType=INTEGER},
+      </if>
+      <if test="stuNational != null" >
+        #{stuNational,jdbcType=VARCHAR},
+      </if>
+      <if test="stuStatus != null" >
+        #{stuStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.wisdsoft.ddms.pojo.StudentExample" resultType="java.lang.Integer" >
+    select count(*) from student
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update student
+    <set >
+      <if test="record.stuId != null" >
+        stu_id = #{record.stuId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stuName != null" >
+        stu_name = #{record.stuName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stuPicture != null" >
+        stu_picture = #{record.stuPicture,jdbcType=BIT},
+      </if>
+      <if test="record.stuSex != null" >
+        stu_sex = #{record.stuSex,jdbcType=CHAR},
+      </if>
+      <if test="record.stuBrithdate != null" >
+        stu_brithDate = #{record.stuBrithdate,jdbcType=DATE},
+      </if>
+      <if test="record.stuNative != null" >
+        stu_native = #{record.stuNative,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stuEntrancetime != null" >
+        stu_entranceTime = #{record.stuEntrancetime,jdbcType=DATE},
+      </if>
+      <if test="record.stuGraduationtime != null" >
+        stu_graduationTime = #{record.stuGraduationtime,jdbcType=DATE},
+      </if>
+      <if test="record.stuPoliticalface != null" >
+        stu_politicalFace = #{record.stuPoliticalface,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stuFamilynum != null" >
+        stu_familyNum = #{record.stuFamilynum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stuAddress != null" >
+        stu_address = #{record.stuAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stuPhone != null" >
+        stu_phone = #{record.stuPhone,jdbcType=INTEGER},
+      </if>
+      <if test="record.stuIdcard != null" >
+        stu_idCard = #{record.stuIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stuClassid != null" >
+        stu_classid = #{record.stuClassid,jdbcType=INTEGER},
+      </if>
+      <if test="record.stuDormitoryid != null" >
+        stu_dormitoryid = #{record.stuDormitoryid,jdbcType=INTEGER},
+      </if>
+      <if test="record.stuNational != null" >
+        stu_national = #{record.stuNational,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stuStatus != null" >
+        stu_status = #{record.stuStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update student
+    set stu_id = #{record.stuId,jdbcType=VARCHAR},
+      stu_name = #{record.stuName,jdbcType=VARCHAR},
+      stu_picture = #{record.stuPicture,jdbcType=BIT},
+      stu_sex = #{record.stuSex,jdbcType=CHAR},
+      stu_brithDate = #{record.stuBrithdate,jdbcType=DATE},
+      stu_native = #{record.stuNative,jdbcType=VARCHAR},
+      stu_entranceTime = #{record.stuEntrancetime,jdbcType=DATE},
+      stu_graduationTime = #{record.stuGraduationtime,jdbcType=DATE},
+      stu_politicalFace = #{record.stuPoliticalface,jdbcType=VARCHAR},
+      stu_familyNum = #{record.stuFamilynum,jdbcType=VARCHAR},
+      stu_address = #{record.stuAddress,jdbcType=VARCHAR},
+      stu_phone = #{record.stuPhone,jdbcType=INTEGER},
+      stu_idCard = #{record.stuIdcard,jdbcType=VARCHAR},
+      stu_classid = #{record.stuClassid,jdbcType=INTEGER},
+      stu_dormitoryid = #{record.stuDormitoryid,jdbcType=INTEGER},
+      stu_national = #{record.stuNational,jdbcType=VARCHAR},
+      stu_status = #{record.stuStatus,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.wisdsoft.ddms.pojo.Student" >
+    update student
+    <set >
+      <if test="stuName != null" >
+        stu_name = #{stuName,jdbcType=VARCHAR},
+      </if>
+      <if test="stuPicture != null" >
+        stu_picture = #{stuPicture,jdbcType=BIT},
+      </if>
+      <if test="stuSex != null" >
+        stu_sex = #{stuSex,jdbcType=CHAR},
+      </if>
+      <if test="stuBrithdate != null" >
+        stu_brithDate = #{stuBrithdate,jdbcType=DATE},
+      </if>
+      <if test="stuNative != null" >
+        stu_native = #{stuNative,jdbcType=VARCHAR},
+      </if>
+      <if test="stuEntrancetime != null" >
+        stu_entranceTime = #{stuEntrancetime,jdbcType=DATE},
+      </if>
+      <if test="stuGraduationtime != null" >
+        stu_graduationTime = #{stuGraduationtime,jdbcType=DATE},
+      </if>
+      <if test="stuPoliticalface != null" >
+        stu_politicalFace = #{stuPoliticalface,jdbcType=VARCHAR},
+      </if>
+      <if test="stuFamilynum != null" >
+        stu_familyNum = #{stuFamilynum,jdbcType=VARCHAR},
+      </if>
+      <if test="stuAddress != null" >
+        stu_address = #{stuAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="stuPhone != null" >
+        stu_phone = #{stuPhone,jdbcType=INTEGER},
+      </if>
+      <if test="stuIdcard != null" >
+        stu_idCard = #{stuIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="stuClassid != null" >
+        stu_classid = #{stuClassid,jdbcType=INTEGER},
+      </if>
+      <if test="stuDormitoryid != null" >
+        stu_dormitoryid = #{stuDormitoryid,jdbcType=INTEGER},
+      </if>
+      <if test="stuNational != null" >
+        stu_national = #{stuNational,jdbcType=VARCHAR},
+      </if>
+      <if test="stuStatus != null" >
+        stu_status = #{stuStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where stu_id = #{stuId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.wisdsoft.ddms.pojo.Student" >
+    update student
+    set stu_name = #{stuName,jdbcType=VARCHAR},
+      stu_picture = #{stuPicture,jdbcType=BIT},
+      stu_sex = #{stuSex,jdbcType=CHAR},
+      stu_brithDate = #{stuBrithdate,jdbcType=DATE},
+      stu_native = #{stuNative,jdbcType=VARCHAR},
+      stu_entranceTime = #{stuEntrancetime,jdbcType=DATE},
+      stu_graduationTime = #{stuGraduationtime,jdbcType=DATE},
+      stu_politicalFace = #{stuPoliticalface,jdbcType=VARCHAR},
+      stu_familyNum = #{stuFamilynum,jdbcType=VARCHAR},
+      stu_address = #{stuAddress,jdbcType=VARCHAR},
+      stu_phone = #{stuPhone,jdbcType=INTEGER},
+      stu_idCard = #{stuIdcard,jdbcType=VARCHAR},
+      stu_classid = #{stuClassid,jdbcType=INTEGER},
+      stu_dormitoryid = #{stuDormitoryid,jdbcType=INTEGER},
+      stu_national = #{stuNational,jdbcType=VARCHAR},
+      stu_status = #{stuStatus,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where stu_id = #{stuId,jdbcType=VARCHAR}
+  </update>
+</mapper>

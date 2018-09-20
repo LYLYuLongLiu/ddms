@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.wisdsoft.ddms.mapper.administrators.AdministratorsMapper" >
+	<select id="queryAdminByAccnumAndPassword" resultType="cn.wisdsoft.ddms.pojo.Administrators">
+		SELECT * FROM administrators WHERE admin_accNum = #{admin_accNum} AND admin_password = #{admin_password}
+	</select>
+</mapper>
