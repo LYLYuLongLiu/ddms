@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/controller/ddms-controller.iml" filepath="$PROJECT_DIR$/controller/ddms-controller.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ddms-ddms.iml" filepath="$PROJECT_DIR$/ddms-ddms.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mapper/ddms-mapper.iml" filepath="$PROJECT_DIR$/mapper/ddms-mapper.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pojo/ddms-pojo.iml" filepath="$PROJECT_DIR$/pojo/ddms-pojo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/service/ddms-service.iml" filepath="$PROJECT_DIR$/service/ddms-service.iml" />
+    </modules>
+  </component>
+</project>

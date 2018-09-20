@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="ddms-controller" />
+        <module name="ddms-mapper" />
+        <module name="ddms-pojo" />
+        <module name="ddms-service" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="8">
+      <module name="ddms-controller" target="1.8" />
+      <module name="ddms-ddms" target="1.8" />
+      <module name="ddms-mapper" target="1.8" />
+      <module name="ddms-pojo" target="1.8" />
+      <module name="ddms-service" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
