@@ -54,8 +54,8 @@
                 <li class="layui-nav-item"><a data-id="2" data-uri="major" class="my-demo">专业管理</a></li>
                 <li class="layui-nav-item"><a data-id="3" data-uri="teacher/" class="my-demo">教师管理</a></li>
                 <li class="layui-nav-item"><a data-id="4" data-uri="student" class="my-demo">学生管理</a></li>
-                <li class="layui-nav-item"><a data-id="5" data-uri="subject" class="my-demo">科目管理</a></li>
-                <li class="layui-nav-item"><a data-id="6" data-uri="classroom" class="my-demo">教室管理</a></li>
+                <li class="layui-nav-item"><a data-id="5" data-uri="curriculum" class="my-demo">科目管理</a></li>
+                <li class="layui-nav-item"><a data-id="6" data-uri="clazzroom/" class="my-demo">教室管理</a></li>
                 <li class="layui-nav-item"><a data-id="7" data-uri="class" class="my-demo">班级管理</a></li>
                 <li class="layui-nav-item layui-nav-itemed">
                     <a class="" href="#">所有商品</a>
@@ -75,7 +75,7 @@
             </ul>
             <div class="layui-tab-content">
                 <div class="layui-tab-item layui-show">
-                    <iframe frameborder="0" name="content" scrolling="no" width="100%" height="600px" src="http://localhost:8080/first"></iframe>
+                    <iframe frameborder="0" name="content" scrolling="yes" width="100%" height="600px" src="http://localhost:8080/first"></iframe>
                 </div>
             </div>
         </div>
@@ -94,7 +94,7 @@
             tabAdd: function(title, id, uri) {
                 element.tabAdd('demo', {
                     title: title,
-                    content: '<iframe frameborder="0" name="content" scrolling="no" width="100%" height="600px" src="http://localhost:8080/'+uri+'"></iframe>', //支持传入html
+                    content: '<iframe frameborder="0" name="content" scrolling="yes" width="100%" height="600px" src="http://localhost:8080/'+uri+'"></iframe>', //支持传入html
                     id: id
                 })
             },
@@ -117,7 +117,6 @@
             }
             // active.tabAdd(title, id, uri);
             // active.tabChange(id);
-            console.log(dataid.attr('data-id'));
         });
     });
 

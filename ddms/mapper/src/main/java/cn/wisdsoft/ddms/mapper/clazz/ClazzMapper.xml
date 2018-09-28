@@ -2,11 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.wisdsoft.ddms.mapper.clazz.ClazzMapper" >
   <resultMap id="BaseResultMap" type="cn.wisdsoft.ddms.pojo.Clazz" >
-    <id column="classid" property="classid" jdbcType="INTEGER" />
-    <result column="class_name" property="className" jdbcType="VARCHAR" />
-    <result column="class_num" property="classNum" jdbcType="INTEGER" />
-    <result column="class_majorid" property="classMajorid" jdbcType="INTEGER" />
-    <result column="collegeid" property="collegeid" jdbcType="INTEGER" />
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="clazz_name" property="clazzName" jdbcType="VARCHAR" />
+    <result column="clazz_num" property="clazzNum" jdbcType="INTEGER" />
+    <result column="clazz_majorid" property="clazzMajorid" jdbcType="VARCHAR" />
+    <result column="collegeid" property="collegeid" jdbcType="VARCHAR" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -68,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    classid, class_name, class_num, class_majorid, collegeid, remark
+    id, clazz_name, clazz_num, clazz_majorid, collegeid, remark
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.wisdsoft.ddms.pojo.ClazzExample" >
     select
@@ -84,15 +84,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from clazz
-    where classid = #{classid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from clazz
-    where classid = #{classid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="cn.wisdsoft.ddms.pojo.ClazzExample" >
     delete from clazz
@@ -101,27 +101,27 @@
     </if>
   </delete>
   <insert id="insert" parameterType="cn.wisdsoft.ddms.pojo.Clazz" >
-    insert into clazz (classid, class_name, class_num, 
-      class_majorid, collegeid, remark
+    insert into clazz (id, clazz_name, clazz_num, 
+      clazz_majorid, collegeid, remark
       )
-    values (#{classid,jdbcType=INTEGER}, #{className,jdbcType=VARCHAR}, #{classNum,jdbcType=INTEGER}, 
-      #{classMajorid,jdbcType=INTEGER}, #{collegeid,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}
+    values (#{id,jdbcType=VARCHAR}, #{clazzName,jdbcType=VARCHAR}, #{clazzNum,jdbcType=INTEGER}, 
+      #{clazzMajorid,jdbcType=VARCHAR}, #{collegeid,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="cn.wisdsoft.ddms.pojo.Clazz" >
     insert into clazz
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="classid != null" >
-        classid,
+      <if test="id != null" >
+        id,
       </if>
-      <if test="className != null" >
-        class_name,
+      <if test="clazzName != null" >
+        clazz_name,
       </if>
-      <if test="classNum != null" >
-        class_num,
+      <if test="clazzNum != null" >
+        clazz_num,
       </if>
-      <if test="classMajorid != null" >
-        class_majorid,
+      <if test="clazzMajorid != null" >
+        clazz_majorid,
       </if>
       <if test="collegeid != null" >
         collegeid,
@@ -131,20 +131,20 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="classid != null" >
-        #{classid,jdbcType=INTEGER},
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
       </if>
-      <if test="className != null" >
-        #{className,jdbcType=VARCHAR},
+      <if test="clazzName != null" >
+        #{clazzName,jdbcType=VARCHAR},
       </if>
-      <if test="classNum != null" >
-        #{classNum,jdbcType=INTEGER},
+      <if test="clazzNum != null" >
+        #{clazzNum,jdbcType=INTEGER},
       </if>
-      <if test="classMajorid != null" >
-        #{classMajorid,jdbcType=INTEGER},
+      <if test="clazzMajorid != null" >
+        #{clazzMajorid,jdbcType=VARCHAR},
       </if>
       <if test="collegeid != null" >
-        #{collegeid,jdbcType=INTEGER},
+        #{collegeid,jdbcType=VARCHAR},
       </if>
       <if test="remark != null" >
         #{remark,jdbcType=VARCHAR},
@@ -160,20 +160,20 @@
   <update id="updateByExampleSelective" parameterType="map" >
     update clazz
     <set >
-      <if test="record.classid != null" >
-        classid = #{record.classid,jdbcType=INTEGER},
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
       </if>
-      <if test="record.className != null" >
-        class_name = #{record.className,jdbcType=VARCHAR},
+      <if test="record.clazzName != null" >
+        clazz_name = #{record.clazzName,jdbcType=VARCHAR},
       </if>
-      <if test="record.classNum != null" >
-        class_num = #{record.classNum,jdbcType=INTEGER},
+      <if test="record.clazzNum != null" >
+        clazz_num = #{record.clazzNum,jdbcType=INTEGER},
       </if>
-      <if test="record.classMajorid != null" >
-        class_majorid = #{record.classMajorid,jdbcType=INTEGER},
+      <if test="record.clazzMajorid != null" >
+        clazz_majorid = #{record.clazzMajorid,jdbcType=VARCHAR},
       </if>
       <if test="record.collegeid != null" >
-        collegeid = #{record.collegeid,jdbcType=INTEGER},
+        collegeid = #{record.collegeid,jdbcType=VARCHAR},
       </if>
       <if test="record.remark != null" >
         remark = #{record.remark,jdbcType=VARCHAR},
@@ -185,11 +185,11 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update clazz
-    set classid = #{record.classid,jdbcType=INTEGER},
-      class_name = #{record.className,jdbcType=VARCHAR},
-      class_num = #{record.classNum,jdbcType=INTEGER},
-      class_majorid = #{record.classMajorid,jdbcType=INTEGER},
-      collegeid = #{record.collegeid,jdbcType=INTEGER},
+    set id = #{record.id,jdbcType=VARCHAR},
+      clazz_name = #{record.clazzName,jdbcType=VARCHAR},
+      clazz_num = #{record.clazzNum,jdbcType=INTEGER},
+      clazz_majorid = #{record.clazzMajorid,jdbcType=VARCHAR},
+      collegeid = #{record.collegeid,jdbcType=VARCHAR},
       remark = #{record.remark,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -198,31 +198,31 @@
   <update id="updateByPrimaryKeySelective" parameterType="cn.wisdsoft.ddms.pojo.Clazz" >
     update clazz
     <set >
-      <if test="className != null" >
-        class_name = #{className,jdbcType=VARCHAR},
+      <if test="clazzName != null" >
+        clazz_name = #{clazzName,jdbcType=VARCHAR},
       </if>
-      <if test="classNum != null" >
-        class_num = #{classNum,jdbcType=INTEGER},
+      <if test="clazzNum != null" >
+        clazz_num = #{clazzNum,jdbcType=INTEGER},
       </if>
-      <if test="classMajorid != null" >
-        class_majorid = #{classMajorid,jdbcType=INTEGER},
+      <if test="clazzMajorid != null" >
+        clazz_majorid = #{clazzMajorid,jdbcType=VARCHAR},
       </if>
       <if test="collegeid != null" >
-        collegeid = #{collegeid,jdbcType=INTEGER},
+        collegeid = #{collegeid,jdbcType=VARCHAR},
       </if>
       <if test="remark != null" >
         remark = #{remark,jdbcType=VARCHAR},
       </if>
     </set>
-    where classid = #{classid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.wisdsoft.ddms.pojo.Clazz" >
     update clazz
-    set class_name = #{className,jdbcType=VARCHAR},
-      class_num = #{classNum,jdbcType=INTEGER},
-      class_majorid = #{classMajorid,jdbcType=INTEGER},
-      collegeid = #{collegeid,jdbcType=INTEGER},
+    set clazz_name = #{clazzName,jdbcType=VARCHAR},
+      clazz_num = #{clazzNum,jdbcType=INTEGER},
+      clazz_majorid = #{clazzMajorid,jdbcType=VARCHAR},
+      collegeid = #{collegeid,jdbcType=VARCHAR},
       remark = #{remark,jdbcType=VARCHAR}
-    where classid = #{classid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

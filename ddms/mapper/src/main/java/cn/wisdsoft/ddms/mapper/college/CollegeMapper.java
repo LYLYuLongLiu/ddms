@@ -2,15 +2,16 @@ package cn.wisdsoft.ddms.mapper.college;
 
 import cn.wisdsoft.ddms.pojo.College;
 import cn.wisdsoft.ddms.pojo.CollegeExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface CollegeMapper {
     int countByExample(CollegeExample example);
 
     int deleteByExample(CollegeExample example);
 
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(String id);
 
     int insert(College record);
 
@@ -18,7 +19,7 @@ public interface CollegeMapper {
 
     List<College> selectByExample(CollegeExample example);
 
-    College selectByPrimaryKey(Integer id);
+    College selectByPrimaryKey(String id);
 
     int updateByExampleSelective(@Param("record") College record, @Param("example") CollegeExample example);
 

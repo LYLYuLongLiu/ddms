@@ -4,11 +4,11 @@ import cn.wisdsoft.ddms.pojo.Teacher;
 import cn.wisdsoft.ddms.service.teacherservice.TeacherService;
 import cn.wisdsoft.pojo.DdmsResult;
 import cn.wisdsoft.pojo.PageResult;
+import cn.wisdsoft.utils.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>ClassName: TeacherController</p>
@@ -23,16 +23,24 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping(value = "/teacher")
 public class TeacherController {
 
+
     @Autowired
     private TeacherService teacherService;
 
 
+    /**
+     * 跳转教师页面
+     *
+     * @param
+     * @return java.lang.String
+     * @date 20:01 2018/9/26
+     */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String teacherPage() {
         return "teacher/teacher_list";
     }
     /**
-     * t添加教师
+     * 添加教师
      * @date 10:55 2018/9/19
      * @param [teacher]
      * @return cn.wisdsoft.pojo.DdmsResult
@@ -40,8 +48,21 @@ public class TeacherController {
      */
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
-    public DdmsResult addTeacher(Teacher teacher) {
+    public DdmsResult addTeacher(String result) {
+        Teacher teacher = JsonUtils.jsonToPojo(result, Teacher.class);
         return teacherService.addTeacher(teacher);
+    }
+
+    /**
+     * 跳转添加页面
+     *
+     * @param
+     * @return java.lang.String
+     * @date 20:01 2018/9/26
+     */
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    public String addTeacherPage() {
+        return "teacher/teacher_add";
     }
 
     /**
@@ -66,21 +87,22 @@ public class TeacherController {
      */
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     @ResponseBody
-    public DdmsResult updateTeacher(Teacher teacher) {
+    public DdmsResult updateTeacher(String result) {
+        Teacher teacher = JsonUtils.jsonToPojo(result, Teacher.class);
         return teacherService.updateTeacher(teacher);
     }
 
     /**
      * 通过条件查询
      *
-     * @param [filter 查询条件]
+     * @param [condition 查询条件]
      * @return cn.wisdsoft.pojo.DdmsResult
      * @date 20:31 2018/9/19
      */
     @RequestMapping(value = "/condition", method = RequestMethod.GET)
     @ResponseBody
-    public DdmsResult queryCondition(String filter) {
-        return teacherService.queryCondition(filter);
+    public DdmsResult queryCondition(String condition) {
+        return teacherService.queryCondition(condition);
     }
 
     /**
@@ -90,9 +112,9 @@ public class TeacherController {
      * @return cn.wisdsoft.pojo.DdmsResult
      * @date 20:54 2018/9/19
      */
-    @RequestMapping(value = "/del", method = RequestMethod.GET)
+    @RequestMapping(value = "/del", method = RequestMethod.POST)
     @ResponseBody
-    public DdmsResult del(Integer id) {
+    public DdmsResult del(String id) {
         return teacherService.deleteTeacher(id);
     }
 
@@ -106,7 +128,7 @@ public class TeacherController {
      */
     @RequestMapping(value = "/queryallpage", method = RequestMethod.GET)
     @ResponseBody
-    public PageResult<Teacher> queryAllPageTeacher(Integer page, Integer limit) {
+    public PageResult<Teacher> queryAllPageTeacher(@RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer limit) {
         return teacherService.queryAllPageTeacher(page, limit);
     }
 
@@ -115,14 +137,28 @@ public class TeacherController {
      *
      * @param page  当前页数
      * @param limit  显示行数
-     * @param conditionpage
+     * @param condition  过滤条件
      * @return cn.wisdsoft.pojo.PageResult<cn.wisdsoft.ddms.pojo.Teacher>
      * @date 20:24 2018/9/20
      */
     @RequestMapping(value = "/queryconditionpage", method = RequestMethod.GET)
     @ResponseBody
-    public PageResult<Teacher> queryConditionpagePageTeacher(Integer page, Integer limit, String conditionpage) {
-        return teacherService.queryConditionPageTeacher(page, limit, conditionpage);
+    public PageResult<Teacher> queryConditionpagePageTeacher(@RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer limit, String condition) {
+        return teacherService.queryConditionPageTeacher(page, limit, condition);
+    }
+
+    /**
+     * 跳转编辑界面
+     *
+     * @param
+     * @return java.lang.String
+     * @date 21:18 2018/9/21
+     */
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
+    public String teacherEditPage(@PathVariable("id") String id, Model model) {
+        Teacher teacher = teacherService.queryTeahcerId(id);
+        model.addAttribute(teacher);
+        return "teacher/teacher_edit";
     }
 
 }

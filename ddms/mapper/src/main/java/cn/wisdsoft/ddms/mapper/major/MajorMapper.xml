@@ -2,10 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.wisdsoft.ddms.mapper.major.MajorMapper" >
   <resultMap id="BaseResultMap" type="cn.wisdsoft.ddms.pojo.Major" >
-    <id column="id" property="id" jdbcType="INTEGER" />
+    <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="major_name" property="majorName" jdbcType="VARCHAR" />
-    <result column="major_collegeid" property="majorCollegeid" jdbcType="INTEGER" />
-    <result column="major_disciplineCategories" property="majorDisciplinecategories" jdbcType="INTEGER" />
+    <result column="major_collegeid" property="majorCollegeid" jdbcType="VARCHAR" />
+    <result column="major_disciplineCategories" property="majorDisciplinecategories" jdbcType="VARCHAR" />
     <result column="major_education" property="majorEducation" jdbcType="VARCHAR" />
     <result column="schoolSystem" property="schoolsystem" jdbcType="INTEGER" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
@@ -86,15 +86,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from major
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from major
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="cn.wisdsoft.ddms.pojo.MajorExample" >
     delete from major
@@ -106,8 +106,8 @@
     insert into major (id, major_name, major_collegeid, 
       major_disciplineCategories, major_education, 
       schoolSystem, remark)
-    values (#{id,jdbcType=INTEGER}, #{majorName,jdbcType=VARCHAR}, #{majorCollegeid,jdbcType=INTEGER}, 
-      #{majorDisciplinecategories,jdbcType=INTEGER}, #{majorEducation,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=VARCHAR}, #{majorName,jdbcType=VARCHAR}, #{majorCollegeid,jdbcType=VARCHAR}, 
+      #{majorDisciplinecategories,jdbcType=VARCHAR}, #{majorEducation,jdbcType=VARCHAR}, 
       #{schoolsystem,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.wisdsoft.ddms.pojo.Major" >
@@ -137,16 +137,16 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
-        #{id,jdbcType=INTEGER},
+        #{id,jdbcType=VARCHAR},
       </if>
       <if test="majorName != null" >
         #{majorName,jdbcType=VARCHAR},
       </if>
       <if test="majorCollegeid != null" >
-        #{majorCollegeid,jdbcType=INTEGER},
+        #{majorCollegeid,jdbcType=VARCHAR},
       </if>
       <if test="majorDisciplinecategories != null" >
-        #{majorDisciplinecategories,jdbcType=INTEGER},
+        #{majorDisciplinecategories,jdbcType=VARCHAR},
       </if>
       <if test="majorEducation != null" >
         #{majorEducation,jdbcType=VARCHAR},
@@ -169,16 +169,16 @@
     update major
     <set >
       <if test="record.id != null" >
-        id = #{record.id,jdbcType=INTEGER},
+        id = #{record.id,jdbcType=VARCHAR},
       </if>
       <if test="record.majorName != null" >
         major_name = #{record.majorName,jdbcType=VARCHAR},
       </if>
       <if test="record.majorCollegeid != null" >
-        major_collegeid = #{record.majorCollegeid,jdbcType=INTEGER},
+        major_collegeid = #{record.majorCollegeid,jdbcType=VARCHAR},
       </if>
       <if test="record.majorDisciplinecategories != null" >
-        major_disciplineCategories = #{record.majorDisciplinecategories,jdbcType=INTEGER},
+        major_disciplineCategories = #{record.majorDisciplinecategories,jdbcType=VARCHAR},
       </if>
       <if test="record.majorEducation != null" >
         major_education = #{record.majorEducation,jdbcType=VARCHAR},
@@ -196,10 +196,10 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update major
-    set id = #{record.id,jdbcType=INTEGER},
+    set id = #{record.id,jdbcType=VARCHAR},
       major_name = #{record.majorName,jdbcType=VARCHAR},
-      major_collegeid = #{record.majorCollegeid,jdbcType=INTEGER},
-      major_disciplineCategories = #{record.majorDisciplinecategories,jdbcType=INTEGER},
+      major_collegeid = #{record.majorCollegeid,jdbcType=VARCHAR},
+      major_disciplineCategories = #{record.majorDisciplinecategories,jdbcType=VARCHAR},
       major_education = #{record.majorEducation,jdbcType=VARCHAR},
       schoolSystem = #{record.schoolsystem,jdbcType=INTEGER},
       remark = #{record.remark,jdbcType=VARCHAR}
@@ -214,10 +214,10 @@
         major_name = #{majorName,jdbcType=VARCHAR},
       </if>
       <if test="majorCollegeid != null" >
-        major_collegeid = #{majorCollegeid,jdbcType=INTEGER},
+        major_collegeid = #{majorCollegeid,jdbcType=VARCHAR},
       </if>
       <if test="majorDisciplinecategories != null" >
-        major_disciplineCategories = #{majorDisciplinecategories,jdbcType=INTEGER},
+        major_disciplineCategories = #{majorDisciplinecategories,jdbcType=VARCHAR},
       </if>
       <if test="majorEducation != null" >
         major_education = #{majorEducation,jdbcType=VARCHAR},
@@ -229,16 +229,41 @@
         remark = #{remark,jdbcType=VARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.wisdsoft.ddms.pojo.Major" >
     update major
     set major_name = #{majorName,jdbcType=VARCHAR},
-      major_collegeid = #{majorCollegeid,jdbcType=INTEGER},
-      major_disciplineCategories = #{majorDisciplinecategories,jdbcType=INTEGER},
+      major_collegeid = #{majorCollegeid,jdbcType=VARCHAR},
+      major_disciplineCategories = #{majorDisciplinecategories,jdbcType=VARCHAR},
       major_education = #{majorEducation,jdbcType=VARCHAR},
       schoolSystem = #{schoolsystem,jdbcType=INTEGER},
       remark = #{remark,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
   </update>
+  <!--  -->
+  <select id="selectByRowsAndlimit" resultType="cn.wisdsoft.ddms.pojo.Major">
+		SELECT
+		m.id,m.major_name,m.major_disciplineCategories,m.major_education,m.schoolSystem,c.college_name
+		FROM major AS m INNER JOIN college AS c WHERE m.major_collegeid = c.id
+		ORDER BY m.id DESC
+	</select>
+  <!-- 条件查询 -->
+  <select id="selectByEducationOrName" parameterType="cn.wisdsoft.ddms.pojo.Major"
+          resultType="cn.wisdsoft.ddms.pojo.Major">
+    SELECT
+    id,major_name,major_collegeid,major_disciplineCategories,major_education,schoolSystem,remark
+    FROM major
+    <where>
+      <if test="majorName !=null and  majorName!=''">
+        major_name like '%${majorName}%'
+      </if>
+      <if test="majorEducation !=null and majorEducation !=''">
+        and major_education like '${majorEducation}%'
+      </if>
+    </where>
+  </select>
+  <select id="selmajormaxid" resultType="String">
+		SELECT MAX( id ) id FROM major
+	</select>
 </mapper>

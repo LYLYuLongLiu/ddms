@@ -1,30 +1,98 @@
 package cn.wisdsoft.ddms.mapper.student;
 
 import cn.wisdsoft.ddms.pojo.Student;
-import cn.wisdsoft.ddms.pojo.StudentExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
+/**
+ * 方法实现说明
+ * @author 高伟萌
+ * @Description 学生Mapper
+ * @date 2018-09-20 13:00
+ * @return null
+ */
 public interface StudentMapper {
-    int countByExample(StudentExample example);
+    /**
+     * 方法实现说明
+     * @author 高伟萌
+     * @Description 查询所有学生
+     * @Date 2018-09-20 17:15
+     * @param page 当前页数
+     * @param limit 每页数量
+     * @return java.util.List<cn.wisdsoft.ddms.pojo.Student>
+     */
+    List<Student> queryAllStudents(@Param("page") int page, @Param("limit") int limit);
 
-    int deleteByExample(StudentExample example);
+    /**
+     * @Author Mr.Gao
+     * @Description 查询所有第一次被删除的学生（用于数据恢复）
+     * @Date 2018/9/24 18:15
+     * @Param [page, limit]
+     * @return java.util.List<cn.wisdsoft.ddms.pojo.Student>
+     */
+    List<Student> queryAllDelStudents(@Param("page") int page, @Param("limit") int limit);
 
-    int deleteByPrimaryKey(String stuId);
+    /**
+     * 方法实现说明
+     * @author 高伟萌
+     * @Description 查询学生总数量（用于分页）
+     * @Date 2018-09-20 13:05
+     * @return int
+     */
+    int queryAllCount();
 
-    int insert(Student record);
+    /**
+     * @Author Mr.Gao
+     * @Description 查询所有第一次删除的学生数量
+     * @Date 2018/9/24 18:19
+     * @Param []
+     * @return int
+     */
+    int queryAllDelCount();
 
-    int insertSelective(Student record);
+    /**
+     * @Author Mr.Gao
+     * @Description 根据ID查询单个学生
+     * @Date 2018/9/22 17:05
+     * @Param [id]
+     * @return java.util.List<cn.wisdsoft.ddms.pojo.Student>
+     */
+    Student queryStudentById(int id);
 
-    List<Student> selectByExample(StudentExample example);
+    /**
+     * @Author Mr.Gao
+     * @Description 第一次删除学生（将stu_delFlag由0变为1）
+     * @Date 2018/9/23 22:38
+     * @Param [id]
+     * @return int
+     */
+    int firstDelStudent(int id);
 
-    Student selectByPrimaryKey(String stuId);
+    /**
+     * @Author Mr.Gao
+     * @Description 更新学生信息
+     * @Date 2018/9/24 11:11
+     * @Param [student]
+     * @return int
+     */
+    int updateStudent(Student student);
 
-    int updateByExampleSelective(@Param("record") Student record, @Param("example") StudentExample example);
+    /**
+     * @Author Mr.Gao
+     * @Description 根据ID彻底删除学生
+     * @Date 2018/9/24 19:19
+     * @Param [id]
+     * @return int
+     */
+    int secondDelStudent(int id);
 
-    int updateByExample(@Param("record") Student record, @Param("example") StudentExample example);
-
-    int updateByPrimaryKeySelective(Student record);
-
-    int updateByPrimaryKey(Student record);
+    /**
+     * @Author Mr.Gao
+     * @Description 根据ID恢复第一次被删除的学生
+     * @Date 2018/9/24 22:02
+     * @Param [id]
+     * @return int
+     */
+    int restoreStudent(int[] id);
 }

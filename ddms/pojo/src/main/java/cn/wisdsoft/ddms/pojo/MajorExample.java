@@ -114,52 +114,62 @@ public class MajorExample {
             return (Criteria) this;
         }
 
-        public Criteria andIdEqualTo(Integer value) {
+        public Criteria andIdEqualTo(String value) {
             addCriterion("id =", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotEqualTo(Integer value) {
+        public Criteria andIdNotEqualTo(String value) {
             addCriterion("id <>", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdGreaterThan(Integer value) {
+        public Criteria andIdGreaterThan(String value) {
             addCriterion("id >", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdGreaterThanOrEqualTo(Integer value) {
+        public Criteria andIdGreaterThanOrEqualTo(String value) {
             addCriterion("id >=", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdLessThan(Integer value) {
+        public Criteria andIdLessThan(String value) {
             addCriterion("id <", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdLessThanOrEqualTo(Integer value) {
+        public Criteria andIdLessThanOrEqualTo(String value) {
             addCriterion("id <=", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdIn(List<Integer> values) {
+        public Criteria andIdLike(String value) {
+            addCriterion("id like", value, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdNotLike(String value) {
+            addCriterion("id not like", value, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdIn(List<String> values) {
             addCriterion("id in", values, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotIn(List<Integer> values) {
+        public Criteria andIdNotIn(List<String> values) {
             addCriterion("id not in", values, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdBetween(Integer value1, Integer value2) {
+        public Criteria andIdBetween(String value1, String value2) {
             addCriterion("id between", value1, value2, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotBetween(Integer value1, Integer value2) {
+        public Criteria andIdNotBetween(String value1, String value2) {
             addCriterion("id not between", value1, value2, "id");
             return (Criteria) this;
         }
@@ -244,52 +254,62 @@ public class MajorExample {
             return (Criteria) this;
         }
 
-        public Criteria andMajorCollegeidEqualTo(Integer value) {
+        public Criteria andMajorCollegeidEqualTo(String value) {
             addCriterion("major_collegeid =", value, "majorCollegeid");
             return (Criteria) this;
         }
 
-        public Criteria andMajorCollegeidNotEqualTo(Integer value) {
+        public Criteria andMajorCollegeidNotEqualTo(String value) {
             addCriterion("major_collegeid <>", value, "majorCollegeid");
             return (Criteria) this;
         }
 
-        public Criteria andMajorCollegeidGreaterThan(Integer value) {
+        public Criteria andMajorCollegeidGreaterThan(String value) {
             addCriterion("major_collegeid >", value, "majorCollegeid");
             return (Criteria) this;
         }
 
-        public Criteria andMajorCollegeidGreaterThanOrEqualTo(Integer value) {
+        public Criteria andMajorCollegeidGreaterThanOrEqualTo(String value) {
             addCriterion("major_collegeid >=", value, "majorCollegeid");
             return (Criteria) this;
         }
 
-        public Criteria andMajorCollegeidLessThan(Integer value) {
+        public Criteria andMajorCollegeidLessThan(String value) {
             addCriterion("major_collegeid <", value, "majorCollegeid");
             return (Criteria) this;
         }
 
-        public Criteria andMajorCollegeidLessThanOrEqualTo(Integer value) {
+        public Criteria andMajorCollegeidLessThanOrEqualTo(String value) {
             addCriterion("major_collegeid <=", value, "majorCollegeid");
             return (Criteria) this;
         }
 
-        public Criteria andMajorCollegeidIn(List<Integer> values) {
+        public Criteria andMajorCollegeidLike(String value) {
+            addCriterion("major_collegeid like", value, "majorCollegeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMajorCollegeidNotLike(String value) {
+            addCriterion("major_collegeid not like", value, "majorCollegeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMajorCollegeidIn(List<String> values) {
             addCriterion("major_collegeid in", values, "majorCollegeid");
             return (Criteria) this;
         }
 
-        public Criteria andMajorCollegeidNotIn(List<Integer> values) {
+        public Criteria andMajorCollegeidNotIn(List<String> values) {
             addCriterion("major_collegeid not in", values, "majorCollegeid");
             return (Criteria) this;
         }
 
-        public Criteria andMajorCollegeidBetween(Integer value1, Integer value2) {
+        public Criteria andMajorCollegeidBetween(String value1, String value2) {
             addCriterion("major_collegeid between", value1, value2, "majorCollegeid");
             return (Criteria) this;
         }
 
-        public Criteria andMajorCollegeidNotBetween(Integer value1, Integer value2) {
+        public Criteria andMajorCollegeidNotBetween(String value1, String value2) {
             addCriterion("major_collegeid not between", value1, value2, "majorCollegeid");
             return (Criteria) this;
         }
@@ -304,52 +324,62 @@ public class MajorExample {
             return (Criteria) this;
         }
 
-        public Criteria andMajorDisciplinecategoriesEqualTo(Integer value) {
+        public Criteria andMajorDisciplinecategoriesEqualTo(String value) {
             addCriterion("major_disciplineCategories =", value, "majorDisciplinecategories");
             return (Criteria) this;
         }
 
-        public Criteria andMajorDisciplinecategoriesNotEqualTo(Integer value) {
+        public Criteria andMajorDisciplinecategoriesNotEqualTo(String value) {
             addCriterion("major_disciplineCategories <>", value, "majorDisciplinecategories");
             return (Criteria) this;
         }
 
-        public Criteria andMajorDisciplinecategoriesGreaterThan(Integer value) {
+        public Criteria andMajorDisciplinecategoriesGreaterThan(String value) {
             addCriterion("major_disciplineCategories >", value, "majorDisciplinecategories");
             return (Criteria) this;
         }
 
-        public Criteria andMajorDisciplinecategoriesGreaterThanOrEqualTo(Integer value) {
+        public Criteria andMajorDisciplinecategoriesGreaterThanOrEqualTo(String value) {
             addCriterion("major_disciplineCategories >=", value, "majorDisciplinecategories");
             return (Criteria) this;
         }
 
-        public Criteria andMajorDisciplinecategoriesLessThan(Integer value) {
+        public Criteria andMajorDisciplinecategoriesLessThan(String value) {
             addCriterion("major_disciplineCategories <", value, "majorDisciplinecategories");
             return (Criteria) this;
         }
 
-        public Criteria andMajorDisciplinecategoriesLessThanOrEqualTo(Integer value) {
+        public Criteria andMajorDisciplinecategoriesLessThanOrEqualTo(String value) {
             addCriterion("major_disciplineCategories <=", value, "majorDisciplinecategories");
             return (Criteria) this;
         }
 
-        public Criteria andMajorDisciplinecategoriesIn(List<Integer> values) {
+        public Criteria andMajorDisciplinecategoriesLike(String value) {
+            addCriterion("major_disciplineCategories like", value, "majorDisciplinecategories");
+            return (Criteria) this;
+        }
+
+        public Criteria andMajorDisciplinecategoriesNotLike(String value) {
+            addCriterion("major_disciplineCategories not like", value, "majorDisciplinecategories");
+            return (Criteria) this;
+        }
+
+        public Criteria andMajorDisciplinecategoriesIn(List<String> values) {
             addCriterion("major_disciplineCategories in", values, "majorDisciplinecategories");
             return (Criteria) this;
         }
 
-        public Criteria andMajorDisciplinecategoriesNotIn(List<Integer> values) {
+        public Criteria andMajorDisciplinecategoriesNotIn(List<String> values) {
             addCriterion("major_disciplineCategories not in", values, "majorDisciplinecategories");
             return (Criteria) this;
         }
 
-        public Criteria andMajorDisciplinecategoriesBetween(Integer value1, Integer value2) {
+        public Criteria andMajorDisciplinecategoriesBetween(String value1, String value2) {
             addCriterion("major_disciplineCategories between", value1, value2, "majorDisciplinecategories");
             return (Criteria) this;
         }
 
-        public Criteria andMajorDisciplinecategoriesNotBetween(Integer value1, Integer value2) {
+        public Criteria andMajorDisciplinecategoriesNotBetween(String value1, String value2) {
             addCriterion("major_disciplineCategories not between", value1, value2, "majorDisciplinecategories");
             return (Criteria) this;
         }

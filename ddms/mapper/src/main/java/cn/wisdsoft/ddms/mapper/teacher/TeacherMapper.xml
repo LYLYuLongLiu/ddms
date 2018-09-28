@@ -2,14 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.wisdsoft.ddms.mapper.teacher.TeacherMapper" >
   <resultMap id="BaseResultMap" type="cn.wisdsoft.ddms.pojo.Teacher" >
-    <id column="workNumber" property="worknumber" jdbcType="INTEGER" />
+    <id column="workNumber" property="worknumber" jdbcType="VARCHAR" />
     <result column="tea_Name" property="teaName" jdbcType="VARCHAR" />
     <result column="tea_EnglishName" property="teaEnglishname" jdbcType="VARCHAR" />
-    <result column="tea_picture" property="teaPicture" jdbcType="BIT" />
+    <result column="tea_picture" property="teaPicture" jdbcType="VARCHAR" />
     <result column="tea_Sex" property="teaSex" jdbcType="CHAR" />
     <result column="tea_BirthDate" property="teaBirthdate" jdbcType="DATE" />
     <result column="tea_phone" property="teaPhone" jdbcType="VARCHAR" />
-    <result column="tea_sparePhone" property="teaSparephone" jdbcType="INTEGER" />
+    <result column="tea_sparePhone" property="teaSparephone" jdbcType="VARCHAR" />
     <result column="tea_Nation" property="teaNation" jdbcType="VARCHAR" />
     <result column="tea_Nativeplace" property="teaNativeplace" jdbcType="VARCHAR" />
     <result column="tea_address" property="teaAddress" jdbcType="VARCHAR" />
@@ -105,15 +105,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from teacher
-    where workNumber = #{worknumber,jdbcType=INTEGER}
+    where workNumber = #{worknumber,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from teacher
-    where workNumber = #{worknumber,jdbcType=INTEGER}
+    where workNumber = #{worknumber,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="cn.wisdsoft.ddms.pojo.TeacherExample" >
     delete from teacher
@@ -131,9 +131,9 @@
       tea_credentialsTime, tea_comeTime, tea_RKZK, 
       tea_type, tea_campus, remark
       )
-    values (#{worknumber,jdbcType=INTEGER}, #{teaName,jdbcType=VARCHAR}, #{teaEnglishname,jdbcType=VARCHAR}, 
-      #{teaPicture,jdbcType=BIT}, #{teaSex,jdbcType=CHAR}, #{teaBirthdate,jdbcType=DATE}, 
-      #{teaPhone,jdbcType=VARCHAR}, #{teaSparephone,jdbcType=INTEGER}, #{teaNation,jdbcType=VARCHAR}, 
+    values (#{worknumber,jdbcType=VARCHAR}, #{teaName,jdbcType=VARCHAR}, #{teaEnglishname,jdbcType=VARCHAR}, 
+      #{teaPicture,jdbcType=VARCHAR}, #{teaSex,jdbcType=CHAR}, #{teaBirthdate,jdbcType=DATE}, 
+      #{teaPhone,jdbcType=VARCHAR}, #{teaSparephone,jdbcType=VARCHAR}, #{teaNation,jdbcType=VARCHAR}, 
       #{teaNativeplace,jdbcType=VARCHAR}, #{teaAddress,jdbcType=VARCHAR}, #{teaPoliticalface,jdbcType=VARCHAR}, 
       #{teaIdcard,jdbcType=VARCHAR}, #{teaMaritalstatus,jdbcType=VARCHAR}, #{teaDegreeedu,jdbcType=VARCHAR}, 
       #{teaJobtitle,jdbcType=VARCHAR}, #{teaCjgzny,jdbcType=DATE}, #{teaCjny,jdbcType=DATE}, 
@@ -219,7 +219,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="worknumber != null" >
-        #{worknumber,jdbcType=INTEGER},
+        #{worknumber,jdbcType=VARCHAR},
       </if>
       <if test="teaName != null" >
         #{teaName,jdbcType=VARCHAR},
@@ -228,7 +228,7 @@
         #{teaEnglishname,jdbcType=VARCHAR},
       </if>
       <if test="teaPicture != null" >
-        #{teaPicture,jdbcType=BIT},
+        #{teaPicture,jdbcType=VARCHAR},
       </if>
       <if test="teaSex != null" >
         #{teaSex,jdbcType=CHAR},
@@ -240,7 +240,7 @@
         #{teaPhone,jdbcType=VARCHAR},
       </if>
       <if test="teaSparephone != null" >
-        #{teaSparephone,jdbcType=INTEGER},
+        #{teaSparephone,jdbcType=VARCHAR},
       </if>
       <if test="teaNation != null" >
         #{teaNation,jdbcType=VARCHAR},
@@ -302,7 +302,7 @@
     update teacher
     <set >
       <if test="record.worknumber != null" >
-        workNumber = #{record.worknumber,jdbcType=INTEGER},
+        workNumber = #{record.worknumber,jdbcType=VARCHAR},
       </if>
       <if test="record.teaName != null" >
         tea_Name = #{record.teaName,jdbcType=VARCHAR},
@@ -311,7 +311,7 @@
         tea_EnglishName = #{record.teaEnglishname,jdbcType=VARCHAR},
       </if>
       <if test="record.teaPicture != null" >
-        tea_picture = #{record.teaPicture,jdbcType=BIT},
+        tea_picture = #{record.teaPicture,jdbcType=VARCHAR},
       </if>
       <if test="record.teaSex != null" >
         tea_Sex = #{record.teaSex,jdbcType=CHAR},
@@ -323,7 +323,7 @@
         tea_phone = #{record.teaPhone,jdbcType=VARCHAR},
       </if>
       <if test="record.teaSparephone != null" >
-        tea_sparePhone = #{record.teaSparephone,jdbcType=INTEGER},
+        tea_sparePhone = #{record.teaSparephone,jdbcType=VARCHAR},
       </if>
       <if test="record.teaNation != null" >
         tea_Nation = #{record.teaNation,jdbcType=VARCHAR},
@@ -380,14 +380,14 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update teacher
-    set workNumber = #{record.worknumber,jdbcType=INTEGER},
+    set workNumber = #{record.worknumber,jdbcType=VARCHAR},
       tea_Name = #{record.teaName,jdbcType=VARCHAR},
       tea_EnglishName = #{record.teaEnglishname,jdbcType=VARCHAR},
-      tea_picture = #{record.teaPicture,jdbcType=BIT},
+      tea_picture = #{record.teaPicture,jdbcType=VARCHAR},
       tea_Sex = #{record.teaSex,jdbcType=CHAR},
       tea_BirthDate = #{record.teaBirthdate,jdbcType=DATE},
       tea_phone = #{record.teaPhone,jdbcType=VARCHAR},
-      tea_sparePhone = #{record.teaSparephone,jdbcType=INTEGER},
+      tea_sparePhone = #{record.teaSparephone,jdbcType=VARCHAR},
       tea_Nation = #{record.teaNation,jdbcType=VARCHAR},
       tea_Nativeplace = #{record.teaNativeplace,jdbcType=VARCHAR},
       tea_address = #{record.teaAddress,jdbcType=VARCHAR},
@@ -418,7 +418,7 @@
         tea_EnglishName = #{teaEnglishname,jdbcType=VARCHAR},
       </if>
       <if test="teaPicture != null" >
-        tea_picture = #{teaPicture,jdbcType=BIT},
+        tea_picture = #{teaPicture,jdbcType=VARCHAR},
       </if>
       <if test="teaSex != null" >
         tea_Sex = #{teaSex,jdbcType=CHAR},
@@ -430,7 +430,7 @@
         tea_phone = #{teaPhone,jdbcType=VARCHAR},
       </if>
       <if test="teaSparephone != null" >
-        tea_sparePhone = #{teaSparephone,jdbcType=INTEGER},
+        tea_sparePhone = #{teaSparephone,jdbcType=VARCHAR},
       </if>
       <if test="teaNation != null" >
         tea_Nation = #{teaNation,jdbcType=VARCHAR},
@@ -481,17 +481,17 @@
         remark = #{remark,jdbcType=VARCHAR},
       </if>
     </set>
-    where workNumber = #{worknumber,jdbcType=INTEGER}
+    where workNumber = #{worknumber,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.wisdsoft.ddms.pojo.Teacher" >
     update teacher
     set tea_Name = #{teaName,jdbcType=VARCHAR},
       tea_EnglishName = #{teaEnglishname,jdbcType=VARCHAR},
-      tea_picture = #{teaPicture,jdbcType=BIT},
+      tea_picture = #{teaPicture,jdbcType=VARCHAR},
       tea_Sex = #{teaSex,jdbcType=CHAR},
       tea_BirthDate = #{teaBirthdate,jdbcType=DATE},
       tea_phone = #{teaPhone,jdbcType=VARCHAR},
-      tea_sparePhone = #{teaSparephone,jdbcType=INTEGER},
+      tea_sparePhone = #{teaSparephone,jdbcType=VARCHAR},
       tea_Nation = #{teaNation,jdbcType=VARCHAR},
       tea_Nativeplace = #{teaNativeplace,jdbcType=VARCHAR},
       tea_address = #{teaAddress,jdbcType=VARCHAR},
@@ -508,10 +508,10 @@
       tea_type = #{teaType,jdbcType=VARCHAR},
       tea_campus = #{teaCampus,jdbcType=VARCHAR},
       remark = #{remark,jdbcType=VARCHAR}
-    where workNumber = #{worknumber,jdbcType=INTEGER}
+    where workNumber = #{worknumber,jdbcType=VARCHAR}
   </update>
 
-  <select id="queryCondition" resultType="cn.wisdsoft.ddms.pojo.Teacher" >
-    SELECT * FROM teacher WHERE workNumber = #{VALUE} OR tea_Name = #{VALUE} OR tea_jobTitle = #{VALUE}
+  <select id="queryCondition" resultType="cn.wisdsoft.ddms.pojo.Teacher" parameterType="string" >
+    SELECT * FROM teacher <if test="condition neq '' and condition != null">WHERE workNumber LIKE  CONCAT(CONCAT('%',#{condition}),'%') OR tea_Name LIKE CONCAT(CONCAT('%',#{condition}),'%') OR tea_jobTitle LIKE CONCAT(CONCAT('%',#{condition}),'%')</if>
   </select>
 </mapper>

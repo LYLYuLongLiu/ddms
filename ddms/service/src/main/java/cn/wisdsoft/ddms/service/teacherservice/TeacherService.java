@@ -4,6 +4,8 @@ import cn.wisdsoft.ddms.pojo.Teacher;
 import cn.wisdsoft.pojo.DdmsResult;
 import cn.wisdsoft.pojo.PageResult;
 
+import java.io.InputStream;
+
 /**
  * <p>ClassName: TeacherService</p>
  * <p>Description:</p>
@@ -61,7 +63,7 @@ public interface TeacherService {
      * @return cn.wisdsoft.pojo.DdmsResult
      * @date 20:35 2018/9/19
      */
-    DdmsResult deleteTeacher(int id);
+    DdmsResult deleteTeacher(String id);
 
     /**
      * 无条件分页
@@ -83,4 +85,14 @@ public interface TeacherService {
      * @date 18:49 2018/9/20
      */
     PageResult<Teacher> queryConditionPageTeacher(int page, int rows, String condition);
+
+    /**
+     * 通过id查询单个教师信息
+     *
+     * @param id  教师id
+     * @return cn.wisdsoft.ddms.pojo.Teacher
+     * @date 19:47 2018/9/27
+     */
+    Teacher queryTeahcerId(String id);
+
 }

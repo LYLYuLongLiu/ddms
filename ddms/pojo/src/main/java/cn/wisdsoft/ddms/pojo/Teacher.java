@@ -5,26 +5,26 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import java.io.Serializable;
 import java.util.Date;
 
-
 public class Teacher implements Serializable {
 
-    private static final long serialVersionUID = 7213961021165349520L;
+    private static final long serialVersionUID = -7291874061103907622L;
 
-    private Integer worknumber;
+    private String worknumber;
 
     private String teaName;
 
     private String teaEnglishname;
 
-    private Boolean teaPicture;
+    private String teaPicture;
 
     private String teaSex;
 
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date teaBirthdate;
 
     private String teaPhone;
 
-    private Integer teaSparephone;
+    private String teaSparephone;
 
     private String teaNation;
 
@@ -42,16 +42,16 @@ public class Teacher implements Serializable {
 
     private String teaJobtitle;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date teaCjgzny;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date teaCjny;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date teaCredentialstime;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date teaCometime;
 
     private String teaRkzk;
@@ -62,12 +62,12 @@ public class Teacher implements Serializable {
 
     private String remark;
 
-    public Integer getWorknumber() {
+    public String getWorknumber() {
         return worknumber;
     }
 
-    public void setWorknumber(Integer worknumber) {
-        this.worknumber = worknumber;
+    public void setWorknumber(String worknumber) {
+        this.worknumber = worknumber == null ? null : worknumber.trim();
     }
 
     public String getTeaName() {
@@ -86,12 +86,12 @@ public class Teacher implements Serializable {
         this.teaEnglishname = teaEnglishname == null ? null : teaEnglishname.trim();
     }
 
-    public Boolean getTeaPicture() {
+    public String getTeaPicture() {
         return teaPicture;
     }
 
-    public void setTeaPicture(Boolean teaPicture) {
-        this.teaPicture = teaPicture;
+    public void setTeaPicture(String teaPicture) {
+        this.teaPicture = teaPicture == null ? null : teaPicture.trim();
     }
 
     public String getTeaSex() {
@@ -118,12 +118,12 @@ public class Teacher implements Serializable {
         this.teaPhone = teaPhone == null ? null : teaPhone.trim();
     }
 
-    public Integer getTeaSparephone() {
+    public String getTeaSparephone() {
         return teaSparephone;
     }
 
-    public void setTeaSparephone(Integer teaSparephone) {
-        this.teaSparephone = teaSparephone;
+    public void setTeaSparephone(String teaSparephone) {
+        this.teaSparephone = teaSparephone == null ? null : teaSparephone.trim();
     }
 
     public String getTeaNation() {

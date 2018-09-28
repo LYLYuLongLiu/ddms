@@ -13,20 +13,20 @@ import java.util.List;
 public class PageResult<T> {
 
     private String msg;
-    private Integer status;
+    private Integer code;
     private long count;
     private List<T> data;
 
 
     public PageResult() {
-        this.status = 0;
+        this.code = 0;
         this.msg = "OK";
         this.data = null;
         this.count = 0;
     }
 
     public PageResult(List<T> data, long count) {
-        this.status = 0;
+        this.code = 0;
         this.msg = "OK";
         this.data = data;
         this.count = count;
@@ -60,11 +60,11 @@ public class PageResult<T> {
         this.data = data;
     }
 
-    public Integer getStatus() {
-        return status;
+    public Integer getCode() {
+        return code;
     }
 
-    public void setStatus(Integer status) {
-        this.status = status;
+    public void setCode(Integer code) {
+        this.code = code;
     }
 }

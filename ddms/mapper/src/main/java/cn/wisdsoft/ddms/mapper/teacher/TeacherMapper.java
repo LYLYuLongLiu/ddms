@@ -2,16 +2,15 @@ package cn.wisdsoft.ddms.mapper.teacher;
 
 import cn.wisdsoft.ddms.pojo.Teacher;
 import cn.wisdsoft.ddms.pojo.TeacherExample;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface TeacherMapper {
     int countByExample(TeacherExample example);
 
     int deleteByExample(TeacherExample example);
 
-    int deleteByPrimaryKey(Integer worknumber);
+    int deleteByPrimaryKey(String worknumber);
 
     int insert(Teacher record);
 
@@ -19,7 +18,7 @@ public interface TeacherMapper {
 
     List<Teacher> selectByExample(TeacherExample example);
 
-    Teacher selectByPrimaryKey(Integer worknumber);
+    Teacher selectByPrimaryKey(String worknumber);
 
     int updateByExampleSelective(@Param("record") Teacher record, @Param("example") TeacherExample example);
 
@@ -36,5 +35,5 @@ public interface TeacherMapper {
      * @return java.util.List<cn.wisdsoft.ddms.pojo.Teacher>
      * @date 18:45 2018/9/19
      */
-    List<Teacher> queryCondition(String condition);
+    List<Teacher> queryCondition(@Param(value = "condition") String condition);
 }

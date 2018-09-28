@@ -1,13 +1,13 @@
 package cn.wisdsoft.ddms.pojo;
 
 public class Major {
-    private Integer id;
+    private String id;
 
     private String majorName;
 
-    private Integer majorCollegeid;
+    private String majorCollegeid;
 
-    private Integer majorDisciplinecategories;
+    private String majorDisciplinecategories;
 
     private String majorEducation;
 
@@ -15,12 +15,22 @@ public class Major {
 
     private String remark;
 
-    public Integer getId() {
+    private String collegeName;
+
+    public String getCollegeName() {
+        return collegeName;
+    }
+
+    public void setCollegeName(String collegeName) {
+        this.collegeName = collegeName;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(String id) {
+        this.id = id == null ? null : id.trim();
     }
 
     public String getMajorName() {
@@ -31,20 +41,20 @@ public class Major {
         this.majorName = majorName == null ? null : majorName.trim();
     }
 
-    public Integer getMajorCollegeid() {
+    public String getMajorCollegeid() {
         return majorCollegeid;
     }
 
-    public void setMajorCollegeid(Integer majorCollegeid) {
-        this.majorCollegeid = majorCollegeid;
+    public void setMajorCollegeid(String majorCollegeid) {
+        this.majorCollegeid = majorCollegeid == null ? null : majorCollegeid.trim();
     }
 
-    public Integer getMajorDisciplinecategories() {
+    public String getMajorDisciplinecategories() {
         return majorDisciplinecategories;
     }
 
-    public void setMajorDisciplinecategories(Integer majorDisciplinecategories) {
-        this.majorDisciplinecategories = majorDisciplinecategories;
+    public void setMajorDisciplinecategories(String majorDisciplinecategories) {
+        this.majorDisciplinecategories = majorDisciplinecategories == null ? null : majorDisciplinecategories.trim();
     }
 
     public String getMajorEducation() {

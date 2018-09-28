@@ -1,56 +1,56 @@
 package cn.wisdsoft.ddms.pojo;
 
 public class Clazz {
-    private Integer classid;
+    private String id;
 
-    private String className;
+    private String clazzName;
 
-    private Integer classNum;
+    private Integer clazzNum;
 
-    private Integer classMajorid;
+    private String clazzMajorid;
 
-    private Integer collegeid;
+    private String collegeid;
 
     private String remark;
 
-    public Integer getClassid() {
-        return classid;
+    public String getId() {
+        return id;
     }
 
-    public void setClassid(Integer classid) {
-        this.classid = classid;
+    public void setId(String id) {
+        this.id = id == null ? null : id.trim();
     }
 
-    public String getClassName() {
-        return className;
+    public String getClazzName() {
+        return clazzName;
     }
 
-    public void setClassName(String className) {
-        this.className = className == null ? null : className.trim();
+    public void setClazzName(String clazzName) {
+        this.clazzName = clazzName == null ? null : clazzName.trim();
     }
 
-    public Integer getClassNum() {
-        return classNum;
+    public Integer getClazzNum() {
+        return clazzNum;
     }
 
-    public void setClassNum(Integer classNum) {
-        this.classNum = classNum;
+    public void setClazzNum(Integer clazzNum) {
+        this.clazzNum = clazzNum;
     }
 
-    public Integer getClassMajorid() {
-        return classMajorid;
+    public String getClazzMajorid() {
+        return clazzMajorid;
     }
 
-    public void setClassMajorid(Integer classMajorid) {
-        this.classMajorid = classMajorid;
+    public void setClazzMajorid(String clazzMajorid) {
+        this.clazzMajorid = clazzMajorid == null ? null : clazzMajorid.trim();
     }
 
-    public Integer getCollegeid() {
+    public String getCollegeid() {
         return collegeid;
     }
 
-    public void setCollegeid(Integer collegeid) {
-        this.collegeid = collegeid;
+    public void setCollegeid(String collegeid) {
+        this.collegeid = collegeid == null ? null : collegeid.trim();
     }
 
     public String getRemark() {

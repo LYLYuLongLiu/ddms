@@ -142,52 +142,62 @@ public class TeacherExample {
             return (Criteria) this;
         }
 
-        public Criteria andWorknumberEqualTo(Integer value) {
+        public Criteria andWorknumberEqualTo(String value) {
             addCriterion("workNumber =", value, "worknumber");
             return (Criteria) this;
         }
 
-        public Criteria andWorknumberNotEqualTo(Integer value) {
+        public Criteria andWorknumberNotEqualTo(String value) {
             addCriterion("workNumber <>", value, "worknumber");
             return (Criteria) this;
         }
 
-        public Criteria andWorknumberGreaterThan(Integer value) {
+        public Criteria andWorknumberGreaterThan(String value) {
             addCriterion("workNumber >", value, "worknumber");
             return (Criteria) this;
         }
 
-        public Criteria andWorknumberGreaterThanOrEqualTo(Integer value) {
+        public Criteria andWorknumberGreaterThanOrEqualTo(String value) {
             addCriterion("workNumber >=", value, "worknumber");
             return (Criteria) this;
         }
 
-        public Criteria andWorknumberLessThan(Integer value) {
+        public Criteria andWorknumberLessThan(String value) {
             addCriterion("workNumber <", value, "worknumber");
             return (Criteria) this;
         }
 
-        public Criteria andWorknumberLessThanOrEqualTo(Integer value) {
+        public Criteria andWorknumberLessThanOrEqualTo(String value) {
             addCriterion("workNumber <=", value, "worknumber");
             return (Criteria) this;
         }
 
-        public Criteria andWorknumberIn(List<Integer> values) {
+        public Criteria andWorknumberLike(String value) {
+            addCriterion("workNumber like", value, "worknumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorknumberNotLike(String value) {
+            addCriterion("workNumber not like", value, "worknumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorknumberIn(List<String> values) {
             addCriterion("workNumber in", values, "worknumber");
             return (Criteria) this;
         }
 
-        public Criteria andWorknumberNotIn(List<Integer> values) {
+        public Criteria andWorknumberNotIn(List<String> values) {
             addCriterion("workNumber not in", values, "worknumber");
             return (Criteria) this;
         }
 
-        public Criteria andWorknumberBetween(Integer value1, Integer value2) {
+        public Criteria andWorknumberBetween(String value1, String value2) {
             addCriterion("workNumber between", value1, value2, "worknumber");
             return (Criteria) this;
         }
 
-        public Criteria andWorknumberNotBetween(Integer value1, Integer value2) {
+        public Criteria andWorknumberNotBetween(String value1, String value2) {
             addCriterion("workNumber not between", value1, value2, "worknumber");
             return (Criteria) this;
         }
@@ -342,52 +352,62 @@ public class TeacherExample {
             return (Criteria) this;
         }
 
-        public Criteria andTeaPictureEqualTo(Boolean value) {
+        public Criteria andTeaPictureEqualTo(String value) {
             addCriterion("tea_picture =", value, "teaPicture");
             return (Criteria) this;
         }
 
-        public Criteria andTeaPictureNotEqualTo(Boolean value) {
+        public Criteria andTeaPictureNotEqualTo(String value) {
             addCriterion("tea_picture <>", value, "teaPicture");
             return (Criteria) this;
         }
 
-        public Criteria andTeaPictureGreaterThan(Boolean value) {
+        public Criteria andTeaPictureGreaterThan(String value) {
             addCriterion("tea_picture >", value, "teaPicture");
             return (Criteria) this;
         }
 
-        public Criteria andTeaPictureGreaterThanOrEqualTo(Boolean value) {
+        public Criteria andTeaPictureGreaterThanOrEqualTo(String value) {
             addCriterion("tea_picture >=", value, "teaPicture");
             return (Criteria) this;
         }
 
-        public Criteria andTeaPictureLessThan(Boolean value) {
+        public Criteria andTeaPictureLessThan(String value) {
             addCriterion("tea_picture <", value, "teaPicture");
             return (Criteria) this;
         }
 
-        public Criteria andTeaPictureLessThanOrEqualTo(Boolean value) {
+        public Criteria andTeaPictureLessThanOrEqualTo(String value) {
             addCriterion("tea_picture <=", value, "teaPicture");
             return (Criteria) this;
         }
 
-        public Criteria andTeaPictureIn(List<Boolean> values) {
+        public Criteria andTeaPictureLike(String value) {
+            addCriterion("tea_picture like", value, "teaPicture");
+            return (Criteria) this;
+        }
+
+        public Criteria andTeaPictureNotLike(String value) {
+            addCriterion("tea_picture not like", value, "teaPicture");
+            return (Criteria) this;
+        }
+
+        public Criteria andTeaPictureIn(List<String> values) {
             addCriterion("tea_picture in", values, "teaPicture");
             return (Criteria) this;
         }
 
-        public Criteria andTeaPictureNotIn(List<Boolean> values) {
+        public Criteria andTeaPictureNotIn(List<String> values) {
             addCriterion("tea_picture not in", values, "teaPicture");
             return (Criteria) this;
         }
 
-        public Criteria andTeaPictureBetween(Boolean value1, Boolean value2) {
+        public Criteria andTeaPictureBetween(String value1, String value2) {
             addCriterion("tea_picture between", value1, value2, "teaPicture");
             return (Criteria) this;
         }
 
-        public Criteria andTeaPictureNotBetween(Boolean value1, Boolean value2) {
+        public Criteria andTeaPictureNotBetween(String value1, String value2) {
             addCriterion("tea_picture not between", value1, value2, "teaPicture");
             return (Criteria) this;
         }
@@ -602,52 +622,62 @@ public class TeacherExample {
             return (Criteria) this;
         }
 
-        public Criteria andTeaSparephoneEqualTo(Integer value) {
+        public Criteria andTeaSparephoneEqualTo(String value) {
             addCriterion("tea_sparePhone =", value, "teaSparephone");
             return (Criteria) this;
         }
 
-        public Criteria andTeaSparephoneNotEqualTo(Integer value) {
+        public Criteria andTeaSparephoneNotEqualTo(String value) {
             addCriterion("tea_sparePhone <>", value, "teaSparephone");
             return (Criteria) this;
         }
 
-        public Criteria andTeaSparephoneGreaterThan(Integer value) {
+        public Criteria andTeaSparephoneGreaterThan(String value) {
             addCriterion("tea_sparePhone >", value, "teaSparephone");
             return (Criteria) this;
         }
 
-        public Criteria andTeaSparephoneGreaterThanOrEqualTo(Integer value) {
+        public Criteria andTeaSparephoneGreaterThanOrEqualTo(String value) {
             addCriterion("tea_sparePhone >=", value, "teaSparephone");
             return (Criteria) this;
         }
 
-        public Criteria andTeaSparephoneLessThan(Integer value) {
+        public Criteria andTeaSparephoneLessThan(String value) {
             addCriterion("tea_sparePhone <", value, "teaSparephone");
             return (Criteria) this;
         }
 
-        public Criteria andTeaSparephoneLessThanOrEqualTo(Integer value) {
+        public Criteria andTeaSparephoneLessThanOrEqualTo(String value) {
             addCriterion("tea_sparePhone <=", value, "teaSparephone");
             return (Criteria) this;
         }
 
-        public Criteria andTeaSparephoneIn(List<Integer> values) {
+        public Criteria andTeaSparephoneLike(String value) {
+            addCriterion("tea_sparePhone like", value, "teaSparephone");
+            return (Criteria) this;
+        }
+
+        public Criteria andTeaSparephoneNotLike(String value) {
+            addCriterion("tea_sparePhone not like", value, "teaSparephone");
+            return (Criteria) this;
+        }
+
+        public Criteria andTeaSparephoneIn(List<String> values) {
             addCriterion("tea_sparePhone in", values, "teaSparephone");
             return (Criteria) this;
         }
 
-        public Criteria andTeaSparephoneNotIn(List<Integer> values) {
+        public Criteria andTeaSparephoneNotIn(List<String> values) {
             addCriterion("tea_sparePhone not in", values, "teaSparephone");
             return (Criteria) this;
         }
 
-        public Criteria andTeaSparephoneBetween(Integer value1, Integer value2) {
+        public Criteria andTeaSparephoneBetween(String value1, String value2) {
             addCriterion("tea_sparePhone between", value1, value2, "teaSparephone");
             return (Criteria) this;
         }
 
-        public Criteria andTeaSparephoneNotBetween(Integer value1, Integer value2) {
+        public Criteria andTeaSparephoneNotBetween(String value1, String value2) {
             addCriterion("tea_sparePhone not between", value1, value2, "teaSparephone");
             return (Criteria) this;
         }

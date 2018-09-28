@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.wisdsoft.ddms.mapper.college.CollegeMapper" >
   <resultMap id="BaseResultMap" type="cn.wisdsoft.ddms.pojo.College" >
-    <id column="id" property="id" jdbcType="INTEGER" />
+    <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="college_name" property="collegeName" jdbcType="VARCHAR" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
   </resultMap>
@@ -81,15 +81,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from college
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from college
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="cn.wisdsoft.ddms.pojo.CollegeExample" >
     delete from college
@@ -100,7 +100,7 @@
   <insert id="insert" parameterType="cn.wisdsoft.ddms.pojo.College" >
     insert into college (id, college_name, remark
       )
-    values (#{id,jdbcType=INTEGER}, #{collegeName,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
+    values (#{id,jdbcType=VARCHAR}, #{collegeName,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="cn.wisdsoft.ddms.pojo.College" >
@@ -118,7 +118,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
-        #{id,jdbcType=INTEGER},
+        #{id,jdbcType=VARCHAR},
       </if>
       <if test="collegeName != null" >
         #{collegeName,jdbcType=VARCHAR},
@@ -138,7 +138,7 @@
     update college
     <set >
       <if test="record.id != null" >
-        id = #{record.id,jdbcType=INTEGER},
+        id = #{record.id,jdbcType=VARCHAR},
       </if>
       <if test="record.collegeName != null" >
         college_name = #{record.collegeName,jdbcType=VARCHAR},
@@ -153,7 +153,7 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update college
-    set id = #{record.id,jdbcType=INTEGER},
+    set id = #{record.id,jdbcType=VARCHAR},
       college_name = #{record.collegeName,jdbcType=VARCHAR},
       remark = #{record.remark,jdbcType=VARCHAR}
     <if test="_parameter != null" >
@@ -170,12 +170,12 @@
         remark = #{remark,jdbcType=VARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.wisdsoft.ddms.pojo.College" >
     update college
     set college_name = #{collegeName,jdbcType=VARCHAR},
       remark = #{remark,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

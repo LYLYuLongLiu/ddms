@@ -3,11 +3,11 @@ package cn.wisdsoft.ddms.pojo;
 import java.util.Date;
 
 public class Student {
-    private String stuId;
+    private String id;
 
     private String stuName;
 
-    private Boolean stuPicture;
+    private String stuPicture;
 
     private String stuSex;
 
@@ -29,22 +29,24 @@ public class Student {
 
     private String stuIdcard;
 
-    private Integer stuClassid;
+    private String stuClazzid;
 
     private Integer stuDormitoryid;
 
     private String stuNational;
 
+    private String stuDelflag;
+
     private String stuStatus;
 
     private String remark;
 
-    public String getStuId() {
-        return stuId;
+    public String getId() {
+        return id;
     }
 
-    public void setStuId(String stuId) {
-        this.stuId = stuId == null ? null : stuId.trim();
+    public void setId(String id) {
+        this.id = id == null ? null : id.trim();
     }
 
     public String getStuName() {
@@ -55,12 +57,12 @@ public class Student {
         this.stuName = stuName == null ? null : stuName.trim();
     }
 
-    public Boolean getStuPicture() {
+    public String getStuPicture() {
         return stuPicture;
     }
 
-    public void setStuPicture(Boolean stuPicture) {
-        this.stuPicture = stuPicture;
+    public void setStuPicture(String stuPicture) {
+        this.stuPicture = stuPicture == null ? null : stuPicture.trim();
     }
 
     public String getStuSex() {
@@ -143,12 +145,12 @@ public class Student {
         this.stuIdcard = stuIdcard == null ? null : stuIdcard.trim();
     }
 
-    public Integer getStuClassid() {
-        return stuClassid;
+    public String getStuClazzid() {
+        return stuClazzid;
     }
 
-    public void setStuClassid(Integer stuClassid) {
-        this.stuClassid = stuClassid;
+    public void setStuClazzid(String stuClazzid) {
+        this.stuClazzid = stuClazzid == null ? null : stuClazzid.trim();
     }
 
     public Integer getStuDormitoryid() {
@@ -165,6 +167,14 @@ public class Student {
 
     public void setStuNational(String stuNational) {
         this.stuNational = stuNational == null ? null : stuNational.trim();
+    }
+
+    public String getStuDelflag() {
+        return stuDelflag;
+    }
+
+    public void setStuDelflag(String stuDelflag) {
+        this.stuDelflag = stuDelflag == null ? null : stuDelflag.trim();
     }
 
     public String getStuStatus() {

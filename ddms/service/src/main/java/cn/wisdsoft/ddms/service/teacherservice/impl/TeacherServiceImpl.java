@@ -6,7 +6,6 @@ import cn.wisdsoft.ddms.pojo.TeacherExample;
 import cn.wisdsoft.ddms.service.teacherservice.TeacherService;
 import cn.wisdsoft.pojo.DdmsResult;
 import cn.wisdsoft.pojo.PageResult;
-import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,7 +89,7 @@ public class TeacherServiceImpl implements TeacherService {
      * @date 20:36 2018/9/19
      */
     @Override
-    public DdmsResult deleteTeacher(int id) {
+    public DdmsResult deleteTeacher(String id) {
         teacherMapper.deleteByPrimaryKey(id);
         return DdmsResult.ok();
     }
@@ -128,4 +127,17 @@ public class TeacherServiceImpl implements TeacherService {
         PageInfo<Teacher> pageInfo = new PageInfo<>(teachers);
         return PageResult.ok(teachers, pageInfo.getTotal());
     }
+
+    /**
+     * 通过id查询单个教师信息
+     *
+     * @param id  教师id
+     * @return cn.wisdsoft.ddms.pojo.Teacher
+     * @date 19:47 2018/9/27
+     */
+    @Override
+    public Teacher queryTeahcerId(String id) {
+        return teacherMapper.selectByPrimaryKey(id);
+    }
+
 }
