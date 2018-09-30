@@ -112,4 +112,16 @@ public class ClazzRoomServiceImpl implements ClazzRoomService {
         return DdmsResult.ok();
     }
 
+    /**
+     * 导入excel数据
+     *
+     * @param lists  excel数据
+     * @return cn.wisdsoft.pojo.DdmsResult
+     * @date 11:46 2018/9/29
+     */
+    @Override
+    public DdmsResult importExcel(List<List<Object>> lists) {
+        clazzRoomMapper.importExcel(lists);
+        return DdmsResult.ok();
+    }
 }

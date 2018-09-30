@@ -94,10 +94,33 @@ layui.use('table', function () {
                 var x = new Array();
                 for(var i = 0; i<data.data.length; i++) {
                     x[i] = new Array();
-                    x[i] = [data.data[i].crLocation,data.data[i].crRoomnum,data.data[i].crMaxstunum,data.data[i].crType];
+                    x[i] = [data.data[i].id,data.data[i].crLocation,data.data[i].crRoomnum,data.data[i].crMaxstunum,data.data[i].crType];
                 }
-                table.exportFile(['所处位置','房间号','容纳学生数量','类型'], x, 'xls');
+                table.exportFile(['编号', '所处位置','房间号','容纳学生数量','类型'], x, 'xls');
             }
         });
+    });
+});
+
+layui.use('upload', function () {
+    var upload = layui.upload;
+
+    //执行实例
+    upload.render({
+        elem: '#imporExcel'
+        , auto: true //选择文件后不自动上传
+        , exts : 'xls|xlsx'
+        , url : 'http://localhost:8080/clazzroom/importExcel'
+        , field : 'excelFile'
+        , accept : 'file'
+        , done : function (res) {
+            if(res.status==200) {
+                layer.msg("导入成功");
+            } else {
+                layer.msg(res.msg);
+            }
+        }, error : function (res) {
+            layer.msg(res.msg);
+        }
     });
 });

@@ -79,4 +79,20 @@ public interface MajorService {
 	 * @return
 	 */
 	String selmajormaxid();
+	/**
+	 * 查询所有数据用于导出
+	 * songjunwei
+	 * 2018年9月21日 下午11:02:15
+	 * @return
+	 */
+	DdmsResult selallmajor();
+
+	 /**
+	  * 批量导入
+	  * songjunwei
+	  * 2018年9月26日 下午7:51:02
+	  * @param list
+	  * @return
+	  */
+	 int insertpiliang(List<String[]> list);
 }

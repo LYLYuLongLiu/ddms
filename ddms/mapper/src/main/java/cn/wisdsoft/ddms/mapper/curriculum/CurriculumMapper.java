@@ -2,6 +2,8 @@ package cn.wisdsoft.ddms.mapper.curriculum;
 
 import cn.wisdsoft.ddms.pojo.Curriculum;
 import cn.wisdsoft.ddms.pojo.CurriculumExample;
+import cn.wisdsoft.pojo.DdmsResult;
+
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -37,10 +39,19 @@ public interface CurriculumMapper {
      */
     String selcurriculumMaxID();
     /**
-     * 根据课程名称和课程类型查询 并分页
+     * 根据课程名称和课程类型 课时查询 并分页
      * songjunwei
      * 2018年9月24日 上午11:28:47
      * @return
      */
-    List<Curriculum> selCurriAccordingtoNameAndtype(Curriculum curriculum);
+    List<Curriculum> selCurriAccordingtoName(@Param("names") String names);
+    
+    /**
+     * 批量插入数据
+     * songjunwei
+     * 2018年9月29日 下午5:30:54
+     * @param list
+     * @return
+     */
+    DdmsResult insertAllCurriculum(@Param("list") List<String[]> list);
 }

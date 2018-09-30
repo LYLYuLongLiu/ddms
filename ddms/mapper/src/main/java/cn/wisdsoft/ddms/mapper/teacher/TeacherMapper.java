@@ -36,4 +36,6 @@ public interface TeacherMapper {
      * @date 18:45 2018/9/19
      */
     List<Teacher> queryCondition(@Param(value = "condition") String condition);
+
+    int importExcel(@Param("list")List list);
 }

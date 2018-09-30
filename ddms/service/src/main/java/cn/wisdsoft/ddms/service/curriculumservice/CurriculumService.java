@@ -66,5 +66,21 @@ public interface CurriculumService {
      * 2018年9月24日 上午11:50:47
      * @return
      */
-    PageResult<Curriculum> selCurriAccordingtoNameAndtype(Curriculum curriculum, int page, int limit);
+    PageResult<Curriculum> selCurriAccordingtoName(String name, int page, int limit);
+    
+    /**
+     * 查询所有课程数据
+     * songjunwei
+     * 2018年9月25日 下午5:24:31
+     * @return
+     */
+    //DdmsResult selAllCurriculum(String selsearch);
+    /**
+     * 批量插入数据
+     * songjunwei
+     * 2018年9月29日 下午4:46:27
+     * @param list
+     * @return
+     */
+    DdmsResult insertAllCurriculum(List<String[]> list);
 }

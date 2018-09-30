@@ -106,12 +106,13 @@ layui.use(['form', 'layedit', 'laydate'], function(){
 				majorEducation: $('#majorEducation').val(),
 				schoolsystem:$('#schoolsystem').val()
 	   		},success: function(data){
+	   			layer.msg("更新成功");
 	   			// 获得frame索引
 				var index = parent.layer.getFrameIndex(window.name);
 				//实时更新
 				window.parent.location.reload();
 				//关闭当前frame
-				parent.layer.close(index);
+				parent.layer.close(index);				
 	   		},error: function(data){
 	   			layer.msg('更新失败',{icon: 5,time:1000});
 	   		}

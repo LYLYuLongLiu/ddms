@@ -178,4 +178,29 @@
       remark = #{remark,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
+
+
+<!--根据学院名称模糊查询-->
+  <select id="queryBycollegeName" resultType="cn.wisdsoft.ddms.pojo.College" parameterType="cn.wisdsoft.ddms.pojo.College">
+    SELECT id,college_name,remark FROM college
+    <where>
+      <if test="collegeName !=null and  collegeName!=''">
+        college_name like '%${collegeName}%'
+      </if>
+    </where>
+  </select>
+<!--查询最大id-->
+  <select id="selcollegemaxid" resultType="String">
+		SELECT MAX( id ) id FROM college
+	</select>
+
+  <!--导入功能停用-->
+  <!--&lt;!&ndash;插入数s据导入用&ndash;&gt;-->
+  <!--<insert id="insertSalesCollege">-->
+    <!--insert into college (id,college_name)-->
+    <!--values-->
+    <!--<foreach collection="list" item="item" index="index" separator=",">-->
+      <!--('${item[0]}','${item[1]}')-->
+    <!--</foreach>-->
+  <!--</insert>-->
 </mapper>

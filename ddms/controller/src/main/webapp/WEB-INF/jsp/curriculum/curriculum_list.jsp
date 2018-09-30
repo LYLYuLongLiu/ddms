@@ -21,31 +21,17 @@
 <body>
 	<div style="padding: 15px;">
 		<div class="demoTable" style="text-align: center; margin-top: 15px;">
-			课程名称：
+			请搜索：
 			<div class="layui-inline">
-				<input class="layui-input" name="selcurName" id="selcurName"
-					autocomplete="off">
+				<input class="layui-input" name="selsearch" id="selsearch" autocomplete="off">
 			</div>
-			课程类型：
-			<div class="layui-inline">
-		      <select name="quiz2" id="selcurCoursetype">
-		        <option value="">请选择课程类型</option>
-		        <option value="公共课">公共课</option>
-		        <option value="专业基础课">专业基础课</option>
-		        <option value="专业技能课">专业技能课</option>
-		      </select>
-		    </div>
-
 			<button class="layui-btn" id="search" data-type="reload">搜索</button>
 		</div>
-		<button class="layui-btn layui-btn-sm" id="addcurriculum">增加</button>
-		<div class="layui-btn-group demoTable" style="margin-top: 20px;">
-		<script type="text/html" id="toolbarDemo">
-  			<div class="layui-btn-container">
-   			 	<button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
-  			</div>
-		</script>
-		</div>
+		<div style="margin-top:10px">
+			<button class="layui-btn layui-btn-sm" id="inportall">批量导入</button>       
+    		<button class="layui-btn layui-btn-sm" id="exportAll">全部导出</button>
+  			<button class="layui-btn layui-btn-sm" id="addcurriculum">增加</button>
+		</div>		
 		<table id="curriculum" lay-filter="test"></table>
 		<script type="text/html" id="barDemo">
   			<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
@@ -61,12 +47,8 @@
 			elem : '#curriculum' //指定原始表格元素选择器（推荐id选择器）
 			,url : 'http://localhost:8080/selectAllCurriculum'
 			,height:473
-			,toolbar: '#toolbarDemo'
 			,id:'curriculumReload'
-			,cols : [ [ {
-				type : 'checkbox',fixed : 'left'
-			} //选择框
-			, {field : 'id',title : '编号',sort : true
+			,cols : [ [{field : 'id',title : '编号',sort : true
 			}, {field : 'curName',title : '课程名称'
 			}, {field : 'curCoursetype',title : '课程类型'
 			}, {field : 'curClazzhour',title : '课时'
@@ -90,9 +72,9 @@
 					data : {
 						id : obj.data.id
 					},success : function(data) {
-						alert("删除成功");
+						 layer.msg("删除成功");
 					},error:function(data){
-						alert("删除失败");
+						 layer.msg("删除失败");
 					}
 		        })
 		      });
@@ -127,24 +109,8 @@
 		      break;
 		    };
 		  });
-		  
-		  
-	});
-	function reload(){
-		var table = layui.table;
-		console.log($('#selcurCoursetype').val());
-		//执行重载
-		table.reload('curriculumReload', {
-		  url: 'http://localhost:8080/selCurriAccordingtoNameAndtype'
-		  ,where: { //设定异步数据接口的额外参数，任意设
-			  curName : $('#selcurName').val(),
-			  curCoursetype : $('#selcurCoursetype').val()
-		  }
-		  	,page: true
-		  }); 
-		}; 
 		$("#search").click(function(){
-		  reload();
+			 reload();
 		});	
 		$(document).ready(function(){
 			$("#addcurriculum").click(function(){
@@ -157,5 +123,59 @@
                 //location.href = "";
 			})
 		})
+		
+		 $('#exportAll').click(function(){
+			  $.ajax({
+		        	url : 'http://localhost:8080/selAllCurriculum',
+					type : "get",
+					data :{
+						names:$('#selsearch').val()
+					},success : function(data) {
+						//定义一个数组
+						var x= new Array();
+						console.log(data.data);
+						 for(var i = 0; i<data.data.length; i++) {		
+							 //定义一个数组的数组
+		                     x[i] = new Array();
+							 x[i]=[data.data[i].id,data.data[i].curName,data.data[i].curCoursetype,
+									 data.data[i].curClazzhour,data.data[i].curCredit];   
+						 }
+						 console.log(x[i]);
+						 table.exportFile(['编号','课程名称','课程类型','课时','学分'], x, 'xls');
+					},error:function(data){
+						 layer.msg("下载失败");
+					}
+		        })
+		  })
+	});
+	function reload(){
+		var table = layui.table;
+		console.log($('#selcurCoursetype').val());
+		//执行重载
+		table.reload('curriculumReload', {
+		  url: 'http://localhost:8080/selCurriAccordingtoName'
+		  ,where: { //设定异步数据接口的额外参数，任意设
+			  names : $('#selsearch').val()
+		  }
+		  	,page: true
+		  }); 
+		};
+		layui.use('upload', function(){
+			  var $ = layui.jquery
+			  ,upload = layui.upload;
+			  //指定允许上传的文件类型
+			  upload.render({
+			    elem: '#inportall'
+			    ,url: 'http://localhost:8080/readExcelCurriculum'
+			    ,field: 'filePath'
+			    ,accept: 'file' //普通文件
+			    ,success:function(data){
+			    	 layer.msg("上传成功");
+			    }
+			  	,error: function(data){
+			  		 layer.msg("上传失败");
+			  	}
+			  });		  
+		  })
 </script>
 </html>

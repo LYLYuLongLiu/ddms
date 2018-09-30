@@ -23,25 +23,18 @@
 		<div class="demoTable" style="text-align: center; margin-top: 15px;">
 			专业名称：
 			<div class="layui-inline">
-				<input class="layui-input" name="selmajorName" id="selmajorName"
-					autocomplete="off">
-			</div>
-			学历：
+				<input class="layui-input" name="selmajorName" id="selmajorName" autocomplete="off">
+			</div>学历：
 			<div class="layui-inline">
-				<input class="layui-input" name="selmajorEducation"
-					id="selmajorEducation" autocomplete="off">
+				<input class="layui-input" name="selmajorEducation" id="selmajorEducation" autocomplete="off">
 			</div>
 			<button class="layui-btn" id="search" data-type="reload">搜索</button>
 		</div>
-		<div class="layui-btn-group demoTable" style="margin-top: 20px;">
-			<script type="text/html" id="toolbarDemo">
-  			<div class="layui-btn-container" id="aaa">
-   			 	<button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
-
-  			</div>
-			</script>
-		</div>
-        <button class="layui-btn addmajor" id="addmajor">增加</button>
+		<div>
+			<button class="layui-btn layui-btn-sm" id="filePath" name="filePath"><i class="layui-icon"></i>批量导入</button>
+		    <button class="layui-btn layui-btn-sm" id="exportAll">全部导出</button>
+  	    	<button class="layui-btn layui-btn-sm" id="addmajor">增加</button>
+		</div>	      
 		<table id="major" lay-filter="test"></table>
 		<script type="text/html" id="barDemo">
   			<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
@@ -57,12 +50,8 @@
 			elem : '#major' //指定原始表格元素选择器（推荐id选择器）
 			,url : 'http://localhost:8080/selmajor'
 			,height:473
-			,toolbar: '#toolbarDemo'
 			,id:'majorReload'
-			,cols : [ [ {
-				type : 'checkbox',fixed : 'left'
-			} //选择框
-			, {field : 'id',title : '编号',sort : true
+			,cols : [ [ {field : 'id',title : '编号',sort : true
 			}, {field : 'majorName',title : '专业名称'
 			}, {field : 'collegeName',title : '学院'
 			}, {field : 'majorDisciplinecategories',title : '学科门类'
@@ -87,9 +76,9 @@
 					data : {
 						id : obj.data.id
 					},success : function(data) {
-						alert("删除成功");
+		        	    layer.msg("删除成功");
 					},error:function(data){
-						alert("删除失败");
+                        layer.msg("删除失败");
 					}
 		        })
 		      });
@@ -114,6 +103,44 @@
 		     });
 		    }
 		  })
+		  
+		  $("#search").click(function(){
+			  reload();
+			});
+		  $('#addmajor').click(function () {              
+              layer.open({
+                  type: 2,
+                  content: 'http://localhost:8080/selcollege',
+                  area: ['500px','400px'],
+                  offset: ['0px', '250px']
+              })
+          })
+		  $('#exportAll').click(function(){
+			  $.ajax({
+		        	url : 'http://localhost:8080/selectByEducationOrName',
+					type : "get",
+				    data:{
+                        majorName : $('#selmajorName').val(),
+                        majorEducation : $('#selmajorEducation').val()
+					},
+					success : function(data) {
+						//定义一个数组
+						var x= new Array();
+						console.log(data.data);
+						 for(var i = 0; i<data.data.length; i++) {		
+							 //定义一个数组的数组
+		                     x[i] = new Array();
+							 x[i]=[data.data[i].id,data.data[i].majorName,data.data[i].collegeName,
+									 data.data[i].majorDisciplinecategories,data.data[i].majorEducation,data.data[i].schoolsystem];   
+						 }
+						 console.log(x[i]);
+						 table.exportFile(['编号','专业名称','学院','学科门类','学历','学制'], x, 'xls');
+					},error:function(data){
+						 layer.msg("导出失败");
+					}
+		        })
+		  }) 
+		  
 	});
 	function reload(){
 		var table = layui.table;
@@ -127,18 +154,24 @@
 		  }
 		  	,page: true
 		  }); 
-		}; 
-		$("#search").click(function(){
-		  reload();
-		});
-            $('#addmajor').click(function () {
-                alert("sdfs");
-                layer.open({
-                    type: 2,
-                    content: 'http://localhost:8080/selcollege',
-                    area: ['500px','400px'],
-                    offset: ['0px', '250px']
-                })
-            })
+		}
+	
+	layui.use('upload', function(){
+		  var $ = layui.jquery
+		  ,upload = layui.upload;
+		  //指定允许上传的文件类型
+		  upload.render({
+		    elem: '#filePath'
+		    ,url: 'http://localhost:8080/readExcelData'
+		    ,field: 'filePath'
+		    ,accept: 'file' //普通文件
+		    ,success:function(data){
+		    	 layer.msg("上传成功");
+		    }
+		  	,error: function(data){
+		  		 layer.msg("上传失败");
+		  	}
+		  });		  
+	  })
 </script>
 </html>

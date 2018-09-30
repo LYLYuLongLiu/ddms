@@ -37,4 +37,13 @@ public interface ClazzRoomMapper {
      * @date 21:04 2018/9/24
      */
     List<ClazzRoom> queryAllCondition(@Param("condition") String condition);
+
+    /**
+     * 导入excel
+     *
+     * @param list  excel数据
+     * @return int
+     * @date 11:42 2018/9/29
+     */
+    int importExcel(@Param("list")List list);
 }

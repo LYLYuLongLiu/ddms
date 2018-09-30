@@ -4,6 +4,8 @@ import cn.wisdsoft.ddms.pojo.ClazzRoom;
 import cn.wisdsoft.pojo.DdmsResult;
 import cn.wisdsoft.pojo.PageResult;
 
+import java.util.List;
+
 /**
  * <p>ClassName: ClazzRoomService</p>
  * <p>Description:</p>
@@ -70,4 +72,13 @@ public interface ClazzRoomService {
      * @date 21:08 2018/9/27
      */
     DdmsResult updateClazzRoom(ClazzRoom clazzRoom);
+
+    /**
+     * 导入excel数据
+     *
+     * @param lists  excel数据
+     * @return cn.wisdsoft.pojo.DdmsResult
+     * @date 11:46 2018/9/29
+     */
+    DdmsResult importExcel(List<List<Object>> lists);
 }

@@ -12,6 +12,10 @@ public class Clazz {
     private String collegeid;
 
     private String remark;
+//为了在管理页面显示名称后加的属性
+    private String majorName;
+
+    private String collegeName;
 
     public String getId() {
         return id;
@@ -59,5 +63,21 @@ public class Clazz {
 
     public void setRemark(String remark) {
         this.remark = remark == null ? null : remark.trim();
+    }
+
+    public String getMajorName() {
+        return majorName;
+    }
+
+    public void setMajorName(String majorName) {
+        this.majorName = majorName;
+    }
+
+    public String getCollegeName() {
+        return collegeName;
+    }
+
+    public void setCollegeName(String collegeName) {
+        this.collegeName = collegeName;
     }
 }

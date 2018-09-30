@@ -292,7 +292,8 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="cn.wisdsoft.ddms.pojo.TeacherExample" resultType="java.lang.Integer" >
+
+    <select id="countByExample" parameterType="cn.wisdsoft.ddms.pojo.TeacherExample" resultType="java.lang.Integer" >
     select count(*) from teacher
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -514,4 +515,23 @@
   <select id="queryCondition" resultType="cn.wisdsoft.ddms.pojo.Teacher" parameterType="string" >
     SELECT * FROM teacher <if test="condition neq '' and condition != null">WHERE workNumber LIKE  CONCAT(CONCAT('%',#{condition}),'%') OR tea_Name LIKE CONCAT(CONCAT('%',#{condition}),'%') OR tea_jobTitle LIKE CONCAT(CONCAT('%',#{condition}),'%')</if>
   </select>
+
+  <insert id="importExcel">
+    insert into teacher (workNumber, tea_Name, tea_EnglishName,
+       tea_Sex, tea_BirthDate,
+      tea_phone, tea_sparePhone, tea_Nation,
+      tea_Nativeplace, tea_address, tea_politicalFace,
+      tea_idcard, tea_maritalStatus, tea_degreeEdu,
+      tea_jobTitle, tea_CJGZNY, tea_CJNY,
+      tea_credentialsTime, tea_comeTime, tea_RKZK,
+      tea_type, tea_campus
+      )
+    values
+    <foreach collection="list" index="index" separator="," item="item">
+      ('${item[0]}', '${item[1]}', '${item[2]}', '${item[3]}', '${item[4]}', '${item[5]}'
+      , '${item[6]}', '${item[7]}', '${item[8]}', '${item[9]}', '${item[10]}', '${item[11]}'
+      , '${item[12]}', '${item[13]}', '${item[14]}', '${item[15]}', '${item[16]}', '${item[17]}'
+      , '${item[18]}', '${item[19]}', '${item[20]}', '${item[21]}')
+    </foreach>
+  </insert>
 </mapper>

@@ -96,17 +96,42 @@ public class CurriculumServiceIimpl implements CurriculumService {
 	}
 	/*
 	 * 
-	 * 描述：根据课程名称和课程类型查询 并分页
+	 * 描述：根据课程名称、课程类型查询 并分页
 	 * songjunwei
 	 * 2018年9月24日 下午12:01:34
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
-	public PageResult<Curriculum> selCurriAccordingtoNameAndtype(Curriculum curriculum, int page, int limit) {
+	public PageResult<Curriculum> selCurriAccordingtoName(String names, int page, int limit) {
 		PageHelper.startPage(page, limit);
-		List<Curriculum> result = curriculumMapper.selCurriAccordingtoNameAndtype(curriculum);
+		List<Curriculum> result = curriculumMapper.selCurriAccordingtoName(names);
 		PageInfo<Curriculum> info = new PageInfo<>(result);
 		return PageResult.ok(result, info.getTotal());
 	}
+	/*
+	 * 
+	 * 描述：批量插入数据
+	 * songjunwei
+	 * 2018年9月29日 下午4:47:42
+	 */
+	@Override
+	public DdmsResult insertAllCurriculum(List<String[]> list) {
+		
+		return curriculumMapper.insertAllCurriculum(list);
+	}
+	
+	/*
+	 * 
+	 * 描述：查询所有课程数据
+	 * songjunwei
+	 * 2018年9月25日 下午5:26:48
+	 */
+//	@Override
+//	public DdmsResult selAllCurriculum(String selsearch) {
+//		CurriculumExample example = new CurriculumExample();
+//		List<Curriculum> list = curriculumMapper.selectByExample(example);
+//		return DdmsResult.ok(list);
+//	}
 	
 	
 

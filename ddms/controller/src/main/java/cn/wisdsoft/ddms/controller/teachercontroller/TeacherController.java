@@ -4,11 +4,16 @@ import cn.wisdsoft.ddms.pojo.Teacher;
 import cn.wisdsoft.ddms.service.teacherservice.TeacherService;
 import cn.wisdsoft.pojo.DdmsResult;
 import cn.wisdsoft.pojo.PageResult;
+import cn.wisdsoft.utils.ImportUtil;
 import cn.wisdsoft.utils.JsonUtils;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 /**
  * <p>ClassName: TeacherController</p>
@@ -159,6 +164,26 @@ public class TeacherController {
         Teacher teacher = teacherService.queryTeahcerId(id);
         model.addAttribute(teacher);
         return "teacher/teacher_edit";
+    }
+
+    /**
+     * 导入Excel
+     *
+     * @param excelFile  Excel文件
+     * @return cn.wisdsoft.pojo.DdmsResult
+     * @date 11:12 2018/9/29
+     */
+    @RequestMapping(value = "/importExcel", method = RequestMethod.POST)
+    @ResponseBody
+    public DdmsResult importExcel(MultipartFile excelFile) {
+        try {
+            Workbook xls = ImportUtil.getExcel(excelFile.getInputStream(), excelFile.getOriginalFilename());
+            List<List<Object>> listByExcel = ImportUtil.getListByExcel(xls);
+            return teacherService.importExcel(listByExcel);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return DdmsResult.build(500, e.getMessage());
+        }
     }
 
 }

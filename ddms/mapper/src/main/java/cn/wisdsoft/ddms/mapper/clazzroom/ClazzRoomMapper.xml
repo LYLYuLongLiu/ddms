@@ -229,4 +229,14 @@
   <select id="queryAllCondition" resultType="cn.wisdsoft.ddms.pojo.ClazzRoom">
     SELECT * FROM clazzroom <if test="condition neq '' and condition != null">WHERE cr_location LIKE CONCAT(CONCAT('%',#{condition}),'%') OR cr_roomNum LIKE CONCAT(CONCAT('%',#{condition}),'%') OR cr_maxStuNum LIKE CONCAT(CONCAT('%',#{condition}),'%') OR cr_type LIKE CONCAT(CONCAT('%',#{condition}),'%')</if>
   </select>
+
+  <insert id="importExcel">
+    insert into clazzroom (id, cr_location, cr_roomNum,
+      cr_maxStuNum, cr_type
+      )
+    values
+    <foreach collection="list" item="item" separator=",">
+      ('${item[0]}','${item[1]}','${item[2]}','${item[3]}','${item[4]}')
+    </foreach>
+  </insert>
 </mapper>

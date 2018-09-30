@@ -4,7 +4,7 @@ import cn.wisdsoft.ddms.pojo.Teacher;
 import cn.wisdsoft.pojo.DdmsResult;
 import cn.wisdsoft.pojo.PageResult;
 
-import java.io.InputStream;
+import java.util.List;
 
 /**
  * <p>ClassName: TeacherService</p>
@@ -94,5 +94,14 @@ public interface TeacherService {
      * @date 19:47 2018/9/27
      */
     Teacher queryTeahcerId(String id);
+
+    /**
+     * 导入Excel
+     *
+     * @param lists  Excel数据
+     * @return cn.wisdsoft.pojo.DdmsResult
+     * @date 11:08 2018/9/29
+     */
+    DdmsResult importExcel(List<List<Object>> lists);
 
 }

@@ -140,4 +140,17 @@ public class TeacherServiceImpl implements TeacherService {
         return teacherMapper.selectByPrimaryKey(id);
     }
 
+    /**
+     * 导入Excel
+     *
+     * @param lists  Excel数据
+     * @return cn.wisdsoft.pojo.DdmsResult
+     * @date 11:08 2018/9/29
+     */
+    @Override
+    public DdmsResult importExcel(List<List<Object>> lists) {
+        teacherMapper.importExcel(lists);
+        return DdmsResult.ok();
+    }
+
 }

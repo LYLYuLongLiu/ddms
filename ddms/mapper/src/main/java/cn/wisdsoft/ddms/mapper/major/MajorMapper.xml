@@ -1,108 +1,110 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cn.wisdsoft.ddms.mapper.major.MajorMapper" >
-  <resultMap id="BaseResultMap" type="cn.wisdsoft.ddms.pojo.Major" >
-    <id column="id" property="id" jdbcType="VARCHAR" />
-    <result column="major_name" property="majorName" jdbcType="VARCHAR" />
-    <result column="major_collegeid" property="majorCollegeid" jdbcType="VARCHAR" />
-    <result column="major_disciplineCategories" property="majorDisciplinecategories" jdbcType="VARCHAR" />
-    <result column="major_education" property="majorEducation" jdbcType="VARCHAR" />
-    <result column="schoolSystem" property="schoolsystem" jdbcType="INTEGER" />
-    <result column="remark" property="remark" jdbcType="VARCHAR" />
-  </resultMap>
-  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+<mapper namespace="cn.wisdsoft.ddms.mapper.major.MajorMapper">
+    <resultMap id="BaseResultMap" type="cn.wisdsoft.ddms.pojo.Major">
+        <id column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="major_name" property="majorName" jdbcType="VARCHAR"/>
+        <result column="major_collegeid" property="majorCollegeid" jdbcType="VARCHAR"/>
+        <result column="major_disciplineCategories" property="majorDisciplinecategories" jdbcType="VARCHAR"/>
+        <result column="major_education" property="majorEducation" jdbcType="VARCHAR"/>
+        <result column="schoolSystem" property="schoolsystem" jdbcType="INTEGER"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List" >
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
     id, major_name, major_collegeid, major_disciplineCategories, major_education, schoolSystem, 
     remark
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.wisdsoft.ddms.pojo.MajorExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from major
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
-    <include refid="Base_Column_List" />
-    from major
-    where id = #{id,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.wisdsoft.ddms.pojo.MajorExample">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from major
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from major
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from major
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="cn.wisdsoft.ddms.pojo.MajorExample" >
-    delete from major
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="cn.wisdsoft.ddms.pojo.Major" >
+    <delete id="deleteByExample" parameterType="cn.wisdsoft.ddms.pojo.MajorExample">
+        delete from major
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="cn.wisdsoft.ddms.pojo.Major">
     insert into major (id, major_name, major_collegeid, 
       major_disciplineCategories, major_education, 
       schoolSystem, remark)
@@ -110,128 +112,129 @@
       #{majorDisciplinecategories,jdbcType=VARCHAR}, #{majorEducation,jdbcType=VARCHAR}, 
       #{schoolsystem,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="cn.wisdsoft.ddms.pojo.Major" >
-    insert into major
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="majorName != null" >
-        major_name,
-      </if>
-      <if test="majorCollegeid != null" >
-        major_collegeid,
-      </if>
-      <if test="majorDisciplinecategories != null" >
-        major_disciplineCategories,
-      </if>
-      <if test="majorEducation != null" >
-        major_education,
-      </if>
-      <if test="schoolsystem != null" >
-        schoolSystem,
-      </if>
-      <if test="remark != null" >
-        remark,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=VARCHAR},
-      </if>
-      <if test="majorName != null" >
-        #{majorName,jdbcType=VARCHAR},
-      </if>
-      <if test="majorCollegeid != null" >
-        #{majorCollegeid,jdbcType=VARCHAR},
-      </if>
-      <if test="majorDisciplinecategories != null" >
-        #{majorDisciplinecategories,jdbcType=VARCHAR},
-      </if>
-      <if test="majorEducation != null" >
-        #{majorEducation,jdbcType=VARCHAR},
-      </if>
-      <if test="schoolsystem != null" >
-        #{schoolsystem,jdbcType=INTEGER},
-      </if>
-      <if test="remark != null" >
-        #{remark,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="cn.wisdsoft.ddms.pojo.MajorExample" resultType="java.lang.Integer" >
-    select count(*) from major
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map" >
-    update major
-    <set >
-      <if test="record.id != null" >
-        id = #{record.id,jdbcType=VARCHAR},
-      </if>
-      <if test="record.majorName != null" >
+    <insert id="insertSelective" parameterType="cn.wisdsoft.ddms.pojo.Major">
+        insert into major
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="majorName != null">
+                major_name,
+            </if>
+            <if test="majorCollegeid != null">
+                major_collegeid,
+            </if>
+            <if test="majorDisciplinecategories != null">
+                major_disciplineCategories,
+            </if>
+            <if test="majorEducation != null">
+                major_education,
+            </if>
+            <if test="schoolsystem != null">
+                schoolSystem,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="majorName != null">
+                #{majorName,jdbcType=VARCHAR},
+            </if>
+            <if test="majorCollegeid != null">
+                #{majorCollegeid,jdbcType=VARCHAR},
+            </if>
+            <if test="majorDisciplinecategories != null">
+                #{majorDisciplinecategories,jdbcType=VARCHAR},
+            </if>
+            <if test="majorEducation != null">
+                #{majorEducation,jdbcType=VARCHAR},
+            </if>
+            <if test="schoolsystem != null">
+                #{schoolsystem,jdbcType=INTEGER},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="countByExample" parameterType="cn.wisdsoft.ddms.pojo.MajorExample" resultType="java.lang.Integer">
+        select count(*) from major
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update major
+        <set>
+            <if test="record.id != null">
+                id = #{record.id,jdbcType=VARCHAR},
+            </if>
+            <if test="record.majorName != null">
+                major_name = #{record.majorName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.majorCollegeid != null">
+                major_collegeid = #{record.majorCollegeid,jdbcType=VARCHAR},
+            </if>
+            <if test="record.majorDisciplinecategories != null">
+                major_disciplineCategories = #{record.majorDisciplinecategories,jdbcType=VARCHAR},
+            </if>
+            <if test="record.majorEducation != null">
+                major_education = #{record.majorEducation,jdbcType=VARCHAR},
+            </if>
+            <if test="record.schoolsystem != null">
+                schoolSystem = #{record.schoolsystem,jdbcType=INTEGER},
+            </if>
+            <if test="record.remark != null">
+                remark = #{record.remark,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update major
+        set id = #{record.id,jdbcType=VARCHAR},
         major_name = #{record.majorName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.majorCollegeid != null" >
         major_collegeid = #{record.majorCollegeid,jdbcType=VARCHAR},
-      </if>
-      <if test="record.majorDisciplinecategories != null" >
         major_disciplineCategories = #{record.majorDisciplinecategories,jdbcType=VARCHAR},
-      </if>
-      <if test="record.majorEducation != null" >
         major_education = #{record.majorEducation,jdbcType=VARCHAR},
-      </if>
-      <if test="record.schoolsystem != null" >
         schoolSystem = #{record.schoolsystem,jdbcType=INTEGER},
-      </if>
-      <if test="record.remark != null" >
-        remark = #{record.remark,jdbcType=VARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map" >
-    update major
-    set id = #{record.id,jdbcType=VARCHAR},
-      major_name = #{record.majorName,jdbcType=VARCHAR},
-      major_collegeid = #{record.majorCollegeid,jdbcType=VARCHAR},
-      major_disciplineCategories = #{record.majorDisciplinecategories,jdbcType=VARCHAR},
-      major_education = #{record.majorEducation,jdbcType=VARCHAR},
-      schoolSystem = #{record.schoolsystem,jdbcType=INTEGER},
-      remark = #{record.remark,jdbcType=VARCHAR}
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.wisdsoft.ddms.pojo.Major" >
-    update major
-    <set >
-      <if test="majorName != null" >
-        major_name = #{majorName,jdbcType=VARCHAR},
-      </if>
-      <if test="majorCollegeid != null" >
-        major_collegeid = #{majorCollegeid,jdbcType=VARCHAR},
-      </if>
-      <if test="majorDisciplinecategories != null" >
-        major_disciplineCategories = #{majorDisciplinecategories,jdbcType=VARCHAR},
-      </if>
-      <if test="majorEducation != null" >
-        major_education = #{majorEducation,jdbcType=VARCHAR},
-      </if>
-      <if test="schoolsystem != null" >
-        schoolSystem = #{schoolsystem,jdbcType=INTEGER},
-      </if>
-      <if test="remark != null" >
-        remark = #{remark,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="cn.wisdsoft.ddms.pojo.Major" >
+        remark = #{record.remark,jdbcType=VARCHAR}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="cn.wisdsoft.ddms.pojo.Major">
+        update major
+        <set>
+            <if test="majorName != null">
+                major_name = #{majorName,jdbcType=VARCHAR},
+            </if>
+            <if test="majorCollegeid != null">
+                major_collegeid = #{majorCollegeid,jdbcType=VARCHAR},
+            </if>
+            <if test="majorDisciplinecategories != null">
+                major_disciplineCategories = #{majorDisciplinecategories,jdbcType=VARCHAR},
+            </if>
+            <if test="majorEducation != null">
+                major_education = #{majorEducation,jdbcType=VARCHAR},
+            </if>
+            <if test="schoolsystem != null">
+                schoolSystem = #{schoolsystem,jdbcType=INTEGER},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="cn.wisdsoft.ddms.pojo.Major">
     update major
     set major_name = #{majorName,jdbcType=VARCHAR},
       major_collegeid = #{majorCollegeid,jdbcType=VARCHAR},
@@ -241,29 +244,40 @@
       remark = #{remark,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <!--  -->
-  <select id="selectByRowsAndlimit" resultType="cn.wisdsoft.ddms.pojo.Major">
+    <!--  -->
+    <select id="selectByRowsAndlimit" resultType="cn.wisdsoft.ddms.pojo.Major">
 		SELECT
 		m.id,m.major_name,m.major_disciplineCategories,m.major_education,m.schoolSystem,c.college_name
 		FROM major AS m INNER JOIN college AS c WHERE m.major_collegeid = c.id
 		ORDER BY m.id DESC
 	</select>
-  <!-- 条件查询 -->
-  <select id="selectByEducationOrName" parameterType="cn.wisdsoft.ddms.pojo.Major"
-          resultType="cn.wisdsoft.ddms.pojo.Major">
-    SELECT
-    id,major_name,major_collegeid,major_disciplineCategories,major_education,schoolSystem,remark
-    FROM major
-    <where>
-      <if test="majorName !=null and  majorName!=''">
-        major_name like '%${majorName}%'
-      </if>
-      <if test="majorEducation !=null and majorEducation !=''">
-        and major_education like '${majorEducation}%'
-      </if>
-    </where>
-  </select>
-  <select id="selmajormaxid" resultType="String">
-		SELECT MAX( id ) id FROM major
+    <select id="selectByEducationOrName" parameterType="cn.wisdsoft.ddms.pojo.Major"
+            resultType="cn.wisdsoft.ddms.pojo.Major">
+        SELECT
+        m.id,m.major_name,m.major_disciplineCategories,m.major_education,m.schoolSystem,c.college_name
+        FROM major AS m INNER JOIN college AS c on m.major_collegeid = c.id
+        <where>         
+            <if test="majorName !=null and  majorName neq ''">
+                major_name like '%${majorName}%'
+            </if>
+            <if test="majorEducation !=null and majorEducation neq''">
+                and major_education like '%${majorEducation}%'
+            </if>
+        </where>
+        ORDER BY m.id DESC
+    </select>
+    <select id="selmajormaxid" resultType="String">
+		SELECT MAX( id ) id FROM
+		major
 	</select>
+
+    <insert id="insertSalesMajor">
+        insert into major (id, major_name, major_collegeid,
+      major_disciplineCategories, major_education,
+      schoolSystem)
+    values
+        <foreach collection="list" item="item" index="index" separator=",">
+             ('${item[0]}','${item[1]}','${item[2]}','${item[3]}','${item[4]}','${item[5]}')
+        </foreach>
+    </insert>
 </mapper>

@@ -230,16 +230,22 @@
   	SELECT MAX(id) id FROM curriculum
   </select>
   <!-- 根据课程名称以及课程类型查询 -->
-  <select id="selCurriAccordingtoNameAndtype" parameterType="cn.wisdsoft.ddms.pojo.Curriculum"
+  <select id="selCurriAccordingtoName" parameterType="String"
           resultType="cn.wisdsoft.ddms.pojo.Curriculum">
-    SELECT id,cur_name,cur_courseType,cur_classHour,cur_credit FROM curriculum
-    <where>
-      <if test="curName!=null and curName!=''">
-        and cur_name like '%${curName}%'
+    SELECT id,cur_name,cur_courseType,cur_clazzHour,cur_credit FROM curriculum
+      <if test="names!=null and names neq ''">
+        where cur_name like CONCAT(CONCAT('%',#{names}),'%')
+         or cur_courseType like CONCAT(CONCAT('%',#{names}),'%')
+         or cur_clazzHour like CONCAT(CONCAT('%',#{names}),'%')
+         or cur_credit like CONCAT(CONCAT('%',#{names}),'%')
       </if>
-      <if test="curCoursetype!=null and curCoursetype!=''">
-        and cur_courseType = #{curCoursetype,jdbcType=VARCHAR}
-      </if>
-    </where>
   </select>
+  <!-- 批量导入数据 -->
+    <insert id="insertAllCurriculum" parameterType="list">
+  	insert into curriculum (id, cur_name, cur_courseType, cur_clazzHour, cur_credit)
+     values 
+    <foreach collection="list" index="index" item="item" separator=",">    	
+    	('${item[0]}','${item[1]}','${item[2]}','${item[3]}','${item[4]}')
+    </foreach>
+  </insert>
 </mapper>

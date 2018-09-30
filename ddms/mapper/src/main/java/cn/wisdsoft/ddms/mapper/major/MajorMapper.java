@@ -50,4 +50,14 @@ public interface MajorMapper {
      * @return
      */
     String selmajormaxid();
+    
+    /**
+     *
+     *
+     * @param list
+     * @return int
+     * @date 20:53 2018/9/28
+     */
+    int insertSalesMajor(@Param("list") List<String[]> list);
+
 }

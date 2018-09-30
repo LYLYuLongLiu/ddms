@@ -105,3 +105,25 @@ layui.use('table', function () {
         });
     });
 });
+
+layui.use('upload', function () {
+    var upload = layui.upload;
+
+    //执行实例
+    upload.render({
+        elem: '#importExcel'
+        , url:'http://localhost:8080/teacher/importExcel'
+        , field: 'excelFile'
+        , accept: 'file'
+        , auto: true //选择文件后不自动上传
+        ,done : function (res) {
+            if(res.status == 200) {
+                layer.msg("上传成功");
+            } else {
+                layer.msg(res.msg);
+            }
+        }, error:function (res) {
+            layer.msg(res.msg);
+        }
+    });
+});

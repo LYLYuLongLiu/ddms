@@ -4,13 +4,17 @@ import cn.wisdsoft.ddms.pojo.Curriculum;
 import cn.wisdsoft.ddms.service.curriculumservice.CurriculumService;
 import cn.wisdsoft.pojo.DdmsResult;
 import cn.wisdsoft.pojo.PageResult;
+import cn.wisdsoft.utils.InsertUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.InputStream;
 import java.util.List;
 
 /**
@@ -160,10 +164,42 @@ public class CurriculumController {
 	 * 2018年9月24日 下午12:03:28
 	 * @return
 	 */
-	@RequestMapping(value="/selCurriAccordingtoNameAndtype",method=RequestMethod.GET)
+	@RequestMapping(value="/selCurriAccordingtoName",method=RequestMethod.GET)
 	@ResponseBody
-	public PageResult<Curriculum> selCurriAccordingtoNameAndtype(Curriculum curriculum,int page,int limit) {
-		return curriculumService.selCurriAccordingtoNameAndtype(curriculum, page, limit);
-		
+	public PageResult<Curriculum> selCurriAccordingtoName(String names,int page,int limit) {
+		return curriculumService.selCurriAccordingtoName(names, page, limit);	
+	}
+	
+	/**
+	 * 查询所有课程
+	 * songjunwei
+	 * 2018年9月25日 下午5:36:48
+	 * @return
+	 */
+	@RequestMapping(value="selAllCurriculum",method=RequestMethod.GET)
+	@ResponseBody
+	public PageResult<Curriculum> selAllCurriculum(String names,@RequestParam(defaultValue="1")int page,@RequestParam(defaultValue="10")int limit) {		
+		return curriculumService.selCurriAccordingtoName(names, page, limit);
+	}
+	/**
+	 * 批量插入数据
+	 * songjunwei
+	 * 2018年9月29日 下午5:45:02
+	 * @param filePath
+	 * @return
+	 */
+	@RequestMapping(value = "/readExcelCurriculum", method = RequestMethod.POST)
+	@ResponseBody
+	public DdmsResult readExcelCurriculum(MultipartFile filePath) {
+		try {
+			InputStream inputStream = filePath.getInputStream();
+            String fileName = filePath.getOriginalFilename();
+            List<String[]> list = InsertUtils.readExcel(inputStream,fileName);
+            curriculumService.insertAllCurriculum(list);
+            	         
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+		return DdmsResult.ok();
 	}
 }

@@ -29,7 +29,7 @@
 <xblock>
     <button style="float: right" class="layui-btn" onclick="x_admin_show('添加教室','/clazzroom/add',500,400)"><i class="layui-icon"></i>添加
     </button>
-    <button class="layui-btn">批量导入</button>
+    <button class="layui-btn" id="imporExcel">批量导入</button>
     <button class="layui-btn">批量导出</button>
     <button class="layui-btn" id="exportAll">全部导出</button>
 </xblock>

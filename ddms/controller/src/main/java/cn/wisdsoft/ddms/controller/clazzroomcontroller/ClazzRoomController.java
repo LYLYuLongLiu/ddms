@@ -4,11 +4,14 @@ import cn.wisdsoft.ddms.pojo.ClazzRoom;
 import cn.wisdsoft.ddms.service.clazzroomservice.ClazzRoomService;
 import cn.wisdsoft.pojo.DdmsResult;
 import cn.wisdsoft.pojo.PageResult;
+import cn.wisdsoft.utils.ImportUtil;
 import cn.wisdsoft.utils.JsonUtils;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * <p>ClassName: ClazzRoomController</p>
@@ -132,4 +135,15 @@ public class ClazzRoomController {
         return "clazzroom/clazzroom_add";
     }
 
+    @RequestMapping(value = "/importExcel", method = RequestMethod.POST)
+    @ResponseBody
+    public DdmsResult imortExcel(MultipartFile excelFile) {
+        try {
+            Workbook excel = ImportUtil.getExcel(excelFile.getInputStream(), excelFile.getOriginalFilename());
+            return clazzRoomService.importExcel(ImportUtil.getListByExcel(excel));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return DdmsResult.build(500, e.getMessage());
+        }
+    }
 }

@@ -225,4 +225,65 @@
       remark = #{remark,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
+
+
+  <!--通过班级名称或者专业名称查询班级信息-->
+  <select id="selectByclazzNameOrmajorName" resultType="cn.wisdsoft.ddms.pojo.Clazz" parameterType="cn.wisdsoft.ddms.pojo.Clazz" >
+    select c.id,c.clazz_name,c.clazz_num,c.clazz_majorid,c.collegeid,c.remark,m.id,m.major_name,d.id,d.college_name
+    from clazz as c inner join major as m inner join college as d
+    where
+    c.clazz_majorid = m.id and c.collegeid = d.id
+      <if test="clazzName !=null and clazzName !=''">
+        AND clazz_name like '%${clazzName}%'
+      </if>
+      <if test="majorName !=null and  majorName!=''">
+        AND major_name like '%${majorName}%'
+      </if>
+    ORDER BY c.id DESC
+  </select>
+
+  <!--高伟萌要的方法1-->
+  <select id="selectNameById" resultType="cn.wisdsoft.ddms.pojo.Clazz" parameterType="cn.wisdsoft.ddms.pojo.Clazz" >
+    select clazz_name
+    from clazz
+    where id = #{id}
+  </select>
+
+
+  <!--高伟萌要的方法2-->
+  <select id="selectIdByName" resultType="cn.wisdsoft.ddms.pojo.Clazz" parameterType="cn.wisdsoft.ddms.pojo.Clazz" >
+    select id
+    from clazz
+    where clazz_name = #{clazzName}
+  </select>
+
+
+  <!--高伟萌要的方法3-->
+  <select id="selectAllName" resultType="cn.wisdsoft.ddms.pojo.Clazz" >
+    select clazz_name from clazz
+  </select>
+
+  <!--查询所有和班级有关的信息-->
+  <select id="selectAllClazz" resultType="cn.wisdsoft.ddms.pojo.Clazz" parameterType="cn.wisdsoft.ddms.pojo.Clazz">
+    select c.id,c.clazz_name,c.clazz_num,c.clazz_majorid,c.collegeid,c.remark,m.id,m.major_name,d.id,d.college_name
+    from clazz as c inner join major as m inner join college as d
+    where
+    c.clazz_majorid = m.id and c.collegeid = d.id
+  </select>
+
+
+  <!--查询最大id-->
+  <select id="selclazzmaxid" resultType="String">
+		SELECT MAX( id ) id FROM clazz
+	</select>
+
+  <!--班级导入功能停用-->
+  <!--&lt;!&ndash;插入数据导入用&ndash;&gt;-->
+  <!--<insert id="insertSalesClazz">-->
+    <!--insert into clazz (id,clazz_name,clazz_num,clazz_majorid,collegeid)-->
+    <!--values-->
+    <!--<foreach collection="list" item="item" index="index" separator=",">-->
+      <!--('${item[0]}','${item[1]}')-->
+    <!--</foreach>-->
+  <!--</insert>-->
 </mapper>

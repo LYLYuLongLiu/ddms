@@ -1,0 +1,2 @@
+[WARN] 2018-09-30 13:10:26,292 [org.springframework.web.servlet.PageNotFound] method: org.springframework.web.servlet.DispatcherServlet.noHandlerFound(DispatcherServlet.java:1176)
+ No mapping found for HTTP request with URI [/favicon.ico] in DispatcherServlet with name 'springmvc'

@@ -50,13 +50,13 @@
         <div class="layui-side-scroll">
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree" lay-filter="test">
-                <li class="layui-nav-item"><a data-id="1" data-uri="college" class="my-demo">学院管理</a></li>
+                <li class="layui-nav-item"><a data-id="1" data-uri="college/" class="my-demo">学院管理</a></li>
                 <li class="layui-nav-item"><a data-id="2" data-uri="major" class="my-demo">专业管理</a></li>
                 <li class="layui-nav-item"><a data-id="3" data-uri="teacher/" class="my-demo">教师管理</a></li>
                 <li class="layui-nav-item"><a data-id="4" data-uri="student" class="my-demo">学生管理</a></li>
                 <li class="layui-nav-item"><a data-id="5" data-uri="curriculum" class="my-demo">科目管理</a></li>
                 <li class="layui-nav-item"><a data-id="6" data-uri="clazzroom/" class="my-demo">教室管理</a></li>
-                <li class="layui-nav-item"><a data-id="7" data-uri="class" class="my-demo">班级管理</a></li>
+                <li class="layui-nav-item"><a data-id="7" data-uri="clazz/" class="my-demo">班级管理</a></li>
                 <li class="layui-nav-item layui-nav-itemed">
                     <a class="" href="#">所有商品</a>
                     <dl class="layui-nav-child">
