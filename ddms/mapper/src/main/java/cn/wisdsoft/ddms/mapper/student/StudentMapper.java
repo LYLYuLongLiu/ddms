@@ -34,6 +34,24 @@ public interface StudentMapper {
     List<Student> queryAllDelStudents(@Param("page") int page, @Param("limit") int limit);
 
     /**
+     * @Author Mr.Gao
+     * @Description 根据条件对学生列表进行筛选
+     * @Date 2018/9/25 23:07
+     * @Param [stuId, stuName, stuClass, page, limit]
+     * @return java.util.List<cn.wisdsoft.ddms.pojo.Student>
+     */
+    List<Student> filterStudent(@Param("stuId")String stuId,@Param("stuName")String stuName,@Param("stuClass")String stuClass,@Param("delFlag") String delFlag,@Param("page")int page,@Param("limit")int limit);
+
+    /**
+     * @Author Mr.Gao
+     * @Description 获取筛选出来的数据的行数
+     * @Date 2018/9/25 23:13
+     * @Param [stuId, stuName, stuClass]
+     * @return int
+     */
+    int filterStudentCount(@Param("stuId")String stuId,@Param("stuName")String stuName,@Param("stuClass")String stuClass);
+
+    /**
      * 方法实现说明
      * @author 高伟萌
      * @Description 查询学生总数量（用于分页）
@@ -95,4 +113,6 @@ public interface StudentMapper {
      * @return int
      */
     int restoreStudent(int[] id);
+
+    int insertStudent(@Param("list") List<List<Student>> list);
 }

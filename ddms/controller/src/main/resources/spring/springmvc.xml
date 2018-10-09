@@ -40,6 +40,51 @@
             <mvc:exclude-mapping path="/image/**" />
             <bean class="cn.wisdsoft.ddms.interceptors.LoginInterceptors" />
         </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/**/add*"/>
+            <mvc:exclude-mapping path="/login" />
+            <mvc:exclude-mapping path="/judge" />
+            <mvc:exclude-mapping path="/js/**" />
+            <mvc:exclude-mapping path="/css/**" />
+            <mvc:exclude-mapping path="/image/**" />
+            <bean class="cn.wisdsoft.ddms.interceptors.LogInterceptors" />
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/**/insert*"/>
+            <mvc:exclude-mapping path="/login" />
+            <mvc:exclude-mapping path="/judge" />
+            <mvc:exclude-mapping path="/js/**" />
+            <mvc:exclude-mapping path="/css/**" />
+            <mvc:exclude-mapping path="/image/**" />
+            <bean class="cn.wisdsoft.ddms.interceptors.LogInterceptors" />
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/**/del*"/>
+            <mvc:exclude-mapping path="/login" />
+            <mvc:exclude-mapping path="/judge" />
+            <mvc:exclude-mapping path="/js/**" />
+            <mvc:exclude-mapping path="/css/**" />
+            <mvc:exclude-mapping path="/image/**" />
+            <bean class="cn.wisdsoft.ddms.interceptors.LogInterceptors" />
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/**/update*"/>
+            <mvc:exclude-mapping path="/login" />
+            <mvc:exclude-mapping path="/judge" />
+            <mvc:exclude-mapping path="/js/**" />
+            <mvc:exclude-mapping path="/css/**" />
+            <mvc:exclude-mapping path="/image/**" />
+            <bean class="cn.wisdsoft.ddms.interceptors.LogInterceptors" />
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/**/del*"/>
+            <mvc:exclude-mapping path="/login" />
+            <mvc:exclude-mapping path="/judge" />
+            <mvc:exclude-mapping path="/js/**" />
+            <mvc:exclude-mapping path="/css/**" />
+            <mvc:exclude-mapping path="/image/**" />
+            <bean class="cn.wisdsoft.ddms.interceptors.LogInterceptors" />
+        </mvc:interceptor>
     </mvc:interceptors>
     <!--采用以下配置支持controller中返回String，否则会当成是视图名称和路劲处理 -->
     <!--<bean-->

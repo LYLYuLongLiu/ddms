@@ -1,6 +1,8 @@
 package cn.wisdsoft.ddms.service.students.impl;
 
+import cn.wisdsoft.ddms.mapper.clazz.ClazzMapper;
 import cn.wisdsoft.ddms.mapper.student.StudentMapper;
+import cn.wisdsoft.ddms.pojo.Clazz;
 import cn.wisdsoft.ddms.pojo.Student;
 import cn.wisdsoft.ddms.service.students.StudentService;
 import cn.wisdsoft.pojo.PageResult;
@@ -14,7 +16,6 @@ import java.util.List;
  * @ Date       ：Created in 2018/9/20 13:09
  * @ Description：学生业务层实现类
  * @ Modified By：
- * @Version: 1.0$
  */
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -22,11 +23,14 @@ public class StudentServiceImpl implements StudentService {
     @Autowired
     private StudentMapper studentMapper;
 
+    @Autowired
+    private ClazzMapper clazzMapper;
+
     /**
      * 方法实现说明
      * @author 高伟萌
      * @Description 查询所有学生
-     * @date 2018-09-20 13:10
+     * @Date 2018-09-20 13:10
      * @return java.util.List<cn.wisdsoft.ddms.pojo.Student>
      */
     @Override
@@ -54,6 +58,30 @@ public class StudentServiceImpl implements StudentService {
 
     /**
      * @Author Mr.Gao
+     * @Description 根据条件对学生列表进行筛选
+     * @Date 2018/9/25 23:09
+     * @Param [stuId, stuName, stuClass, page, limit]
+     * @return cn.wisdsoft.pojo.PageResult<cn.wisdsoft.ddms.pojo.Student>
+     */
+    @Override
+    public PageResult<Student> filterStudent(String stuId, String stuName, String stuClass, String delFlag, int page, int limit) {
+
+        //根据stuClass查询班级ID TODO
+        String dataClassId;
+        Clazz clazz = clazzMapper.selectIdByName(stuClass);
+        if(clazz == null){
+            dataClassId = "";
+        }else{
+            dataClassId = clazz.getId();
+        }
+        List<Student> students = studentMapper.filterStudent(stuId, stuName, dataClassId,delFlag, page, limit);
+        int count = studentMapper.filterStudentCount(stuId, stuName, dataClassId);
+        PageResult<Student> pageResult = PageResult.ok(students, count);
+        return pageResult;
+    }
+
+    /**
+     * @Author Mr.Gao
      * @Description 根据ID查询单个学生
      * @Date 2018/9/22 17:18
      * @Param [id]
@@ -63,6 +91,19 @@ public class StudentServiceImpl implements StudentService {
     public Student queryStudentById(int id) {
         return studentMapper.queryStudentById(id);
     }
+
+    /**
+     * @Author Mr.Gao
+     * @Description 查询所有课程名称
+     * @Date 2018/9/26 16:44
+     * @Param []
+     * @return java.util.List<cn.wisdsoft.ddms.pojo.Clazz>
+     */
+    @Override
+    public List<Clazz> queryAllClazzName() {
+        return clazzMapper.selectAllName();
+    }
+
 
     /**
      * @Author Mr.Gao
@@ -85,6 +126,9 @@ public class StudentServiceImpl implements StudentService {
      */
     @Override
     public int updateStudent(Student student) {
+        String clazzName = student.getClazzName();
+        Clazz clazz = clazzMapper.selectIdByName(clazzName);
+        student.setStuClazzid(clazz.getId());
         return studentMapper.updateStudent(student);
     }
 

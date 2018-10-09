@@ -1,14 +1,16 @@
 package cn.wisdsoft.ddms.service.students;
 
+import cn.wisdsoft.ddms.pojo.Clazz;
 import cn.wisdsoft.ddms.pojo.Student;
 import cn.wisdsoft.pojo.PageResult;
+
+import java.util.List;
 
 /**
  * @ Author     ：高伟萌
  * @ Date       ：Created in 2018/9/20 13:06
  * @ Description：学生业务层
  * @ Modified By：
- * @Version: 1.0$
  */
 public interface StudentService {
     /**
@@ -33,6 +35,15 @@ public interface StudentService {
 
     /**
      * @Author Mr.Gao
+     * @Description 根据条件对学生列表进行筛选
+     * @Date 2018/9/25 23:08
+     * @Param [stuId, stuName, stuClass, page, limit]
+     * @return cn.wisdsoft.pojo.PageResult<cn.wisdsoft.ddms.pojo.Student>
+     */
+    PageResult<Student> filterStudent(String stuId,String stuName,String stuClass,String delFlag,int page,int limit);
+
+    /**
+     * @Author Mr.Gao
      * @Description 根据ID查询单个学生
      * @Date 2018/9/22 17:17
      * @Param [id]
@@ -42,6 +53,14 @@ public interface StudentService {
 
     /**
      * @Author Mr.Gao
+     * @Description 查询所有班级名称
+     * @Date 2018/9/26 16:43
+     * @Param []
+     * @return java.util.List<cn.wisdsoft.ddms.pojo.Clazz>
+     */
+    List<Clazz> queryAllClazzName();
+
+    /** * @Author Mr.Gao
      * @Description 根据ID删除学生（将stu_delFlag由0变为1）
      * @Date 2018/9/23 22:41
      * @Param [id]

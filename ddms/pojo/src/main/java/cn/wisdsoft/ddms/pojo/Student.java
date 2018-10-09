@@ -41,6 +41,8 @@ public class Student {
 
     private String remark;
 
+    private String clazzName;
+
     public String getId() {
         return id;
     }
@@ -191,5 +193,13 @@ public class Student {
 
     public void setRemark(String remark) {
         this.remark = remark == null ? null : remark.trim();
+    }
+
+    public String getClazzName() {
+        return clazzName;
+    }
+
+    public void setClazzName(String clazzName) {
+        this.clazzName = clazzName == null ? null : clazzName.trim();
     }
 }

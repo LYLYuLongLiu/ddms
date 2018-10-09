@@ -260,7 +260,7 @@
 
   <!--高伟萌要的方法3-->
   <select id="selectAllName" resultType="cn.wisdsoft.ddms.pojo.Clazz" >
-    select clazz_name from clazz
+    select clazz_name,id from clazz
   </select>
 
   <!--查询所有和班级有关的信息-->

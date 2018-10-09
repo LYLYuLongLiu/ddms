@@ -104,7 +104,12 @@
             <div class="layui-inline">
                 <label class="layui-form-label">所属班级</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="stuClazzid" id="stuClazzid" autocomplete="off" class="layui-input" value="${oneStudent.stuClazzid}">
+                    <%--<input type="text" name="clazzName" id="clazzName" autocomplete="off" class="layui-input" value="${oneStudent.clazzName}">--%>
+                    <select name="clazzName" id="clazzName">
+                        <c:forEach items="${allClazz}" var="x">
+                            <option value="${x.clazzName}" <c:if test = "${ oneStudent.clazzName == x.clazzName }">selected="selected"</c:if>>${x.clazzName}</option>
+                        </c:forEach>
+                    </select>
                 </div>
             </div>
         </div>

@@ -21,13 +21,13 @@
 <body>
     <div>
         <div class="layui-form-item">
+            <label class="layui-form-label">学号</label>
+            <div class="layui-input-inline">
+                <input type="text" id="stuId" readonly lay-verify="required" class="layui-input" value="${oneStudent.id}" />
+            </div>
             <label class="layui-form-label">姓名</label>
             <div class="layui-input-inline">
                 <input type="text" id="stuName" readonly lay-verify="required" class="layui-input" value="${oneStudent.stuName}" />
-            </div>
-            <label class="layui-form-label">状态</label>
-            <div class="layui-input-inline">
-                <input type="text" id="stuStatus" readonly lay-verify="required" class="layui-input" value="${oneStudent.stuStatus}" />
             </div>
             <label class="layui-form-label">照片</label>
             <div class="layui-input-inline" style="width: 50px;height: 50px;border: 1px solid red;">
@@ -126,7 +126,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">所在班级</label>
             <div class="layui-input-inline">
-                <input type="text" id="stuClass" readonly lay-verify="required" class="layui-input" value="${oneStudent.stuClazzid}" />
+                <input type="text" id="stuClass" readonly lay-verify="required" class="layui-input" value="${oneStudent.clazzName}" />
             </div>
             <label class="layui-form-label">所在宿舍</label>
             <div class="layui-input-inline">
@@ -143,6 +143,10 @@
             <label class="layui-form-label">所属民族</label>
             <div class="layui-input-inline">
                 <input type="text" id="stuNational" readonly lay-verify="required" class="layui-input" value="${oneStudent.stuNational}" />
+            </div>
+            <label class="layui-form-label">状态</label>
+            <div class="layui-input-inline">
+                <input type="text" id="stuStatus" readonly lay-verify="required" class="layui-input" value="${oneStudent.stuStatus}" />
             </div>
         </div>
         <%--<div class="layui-form-item">--%>

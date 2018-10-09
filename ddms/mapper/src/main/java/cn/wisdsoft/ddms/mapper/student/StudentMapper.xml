@@ -2,11 +2,32 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.wisdsoft.ddms.mapper.student.StudentMapper" >
 	<select id="queryAllStudents" resultType="cn.wisdsoft.ddms.pojo.Student">
-		SELECT * FROM student WHERE stu_delFlag = 0 LIMIT #{page},#{limit}
+        SELECT s.id,s.stu_name,s.stu_sex,s.stu_brithDate,s.stu_native,s.stu_entranceTime,s.stu_graduationTime,s.stu_politicalFace,
+               s.stu_familyNum,s.stu_address,s.stu_phone,s.stu_idCard,c.clazz_name,s.stu_dormitoryid,s.stu_national,s.stu_status
+        FROM student s,clazz c WHERE s.stu_clazzid = c.id AND s.stu_delFlag = 0 LIMIT #{page},#{limit}
 	</select>
 	<select id="queryAllDelStudents" resultType="cn.wisdsoft.ddms.pojo.Student">
-		SELECT * FROM student WHERE stu_delFlag = 1 LIMIT #{page},#{limit}
+        SELECT s.id,s.stu_name,s.stu_sex,s.stu_brithDate,s.stu_native,s.stu_entranceTime,s.stu_graduationTime,s.stu_politicalFace,
+               s.stu_familyNum,s.stu_address,s.stu_phone,s.stu_idCard,c.clazz_name,s.stu_dormitoryid,s.stu_national,s.stu_status
+        FROM student s,clazz c WHERE s.stu_clazzid = c.id AND s.stu_delFlag = 1 LIMIT #{page},#{limit}
 	</select>
+	<select id="filterStudent" resultType="cn.wisdsoft.ddms.pojo.Student">
+        SELECT s.id,s.stu_name,s.stu_sex,s.stu_brithDate,s.stu_native,s.stu_entranceTime,s.stu_graduationTime,s.stu_politicalFace,
+        s.stu_familyNum,s.stu_address,s.stu_phone,s.stu_idCard,c.clazz_name,s.stu_dormitoryid,s.stu_national,s.stu_status
+        FROM student s,clazz c WHERE s.stu_clazzid = c.id AND s.stu_delFlag = #{delFlag}
+            <if test="stuId != ''">AND s.id = #{stuId}</if>
+            <if test="stuName != ''">AND s.stu_name = #{stuName}</if>
+            <if test="stuClass != ''">AND s.stu_clazzid = #{stuClass}</if>
+        LIMIT #{page},#{limit}
+	</select>
+    <select id="filterStudentCount" resultType="Integer">
+        SELECT COUNT(*) FROM student
+        <where>
+            <if test="stuId != ''">id = #{stuId}</if>
+            <if test="stuName != ''">AND stu_name = #{stuName}</if>
+            <if test="stuClass != ''">AND stu_clazzid = #{stuClass}</if>
+        </where>
+    </select>
 	<select id="queryAllCount" resultType="Integer">
 		SELECT COUNT(*) FROM student WHERE stu_delFlag = 0
 	</select>
@@ -14,7 +35,9 @@
         SELECT COUNT(*) FROM student WHERE stu_delFlag = 1
     </select>
 	<select id="queryStudentById" resultType="cn.wisdsoft.ddms.pojo.Student">
-		SELECT * FROM student WHERE id = #{id}
+        SELECT s.id,s.stu_name,s.stu_sex,s.stu_brithDate,s.stu_native,s.stu_entranceTime,s.stu_graduationTime,s.stu_politicalFace,
+               s.stu_familyNum,s.stu_address,s.stu_phone,s.stu_idCard,c.clazz_name,s.stu_dormitoryid,s.stu_national,s.stu_status
+        FROM student s,clazz c WHERE s.id = #{id}
 	</select>
     <update id="firstDelStudent">
         UPDATE student SET stu_delFlag = 1 WHERE id = #{id}
@@ -35,4 +58,8 @@
     <delete id="secondDelStudent">
         DELETE FROM student WHERE id = #{id}
     </delete>
+
+    <insert id="insertStudent">
+
+    </insert>
 </mapper>

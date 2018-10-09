@@ -7,7 +7,9 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page isELIgnored="false" %>
+<%@include file="/taglibs.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,12 +37,15 @@
         </ul>
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
-                <a href="javascript:;">
-                    ${administrators.adminAccnum}
-                    <!-- -------------------------------------------------------此处为用户名 -->
+                <a href="#">
+                    ${administrator.adminAccnum}
                 </a>
                 <dl class="layui-nav-child">
-                    <dd><a href="">基本资料</a></dd>
+                    <dd><a data-id="10" data-uri="goToUpdatePwd" class="my-demo">修改密码</a></dd>
+                    <c:if test="${administrator.remark == 1}">
+                        <dd><a data-id="8" data-uri="goToAddAdmin" class="my-demo">添加管理员</a></dd>
+                        <dd><a data-id="9" data-uri="goToDelAdmin" class="my-demo">删除管理员</a></dd>
+                    </c:if>
                 </dl>
             </li>
             <li class="layui-nav-item"><a href="">退了</a></li>
@@ -75,7 +80,8 @@
             </ul>
             <div class="layui-tab-content">
                 <div class="layui-tab-item layui-show">
-                    <iframe frameborder="0" name="content" scrolling="yes" width="100%" height="600px" src="http://localhost:8080/first"></iframe>
+                    <iframe frameborder="0" name="content" scrolling="yes" width="100%" height="600px"
+                            src="http://localhost:8080/first"></iframe>
                 </div>
             </div>
         </div>
@@ -88,13 +94,13 @@
 <script src="/js/layui/layui.js"></script>
 <script>
     //JavaScript代码区域
-    layui.use('element', function() {
+    layui.use('element', function () {
         var element = layui.element;
         active = {
-            tabAdd: function(title, id, uri) {
+            tabAdd: function (title, id, uri) {
                 element.tabAdd('demo', {
                     title: title,
-                    content: '<iframe frameborder="0" name="content" scrolling="yes" width="100%" height="600px" src="http://localhost:8080/'+uri+'"></iframe>', //支持传入html
+                    content: '<iframe frameborder="0" name="content" scrolling="yes" width="100%" height="600px" src="http://localhost:8080/' + uri + '"></iframe>', //支持传入html
                     id: id
                 })
             },
@@ -103,16 +109,16 @@
                 element.tabChange('demo', id); //切换到：用户管理
             }
         }
-        $('.my-demo').on('click', function() {
+        $('.my-demo').on('click', function () {
             var dataid = $(this);
             var id = dataid.attr('data-id');
             var title = dataid.text();
             var uri = dataid.attr('data-uri');
             var li = $('.layui-tab-title li[lay-id=' + id + ']').length;
-            if(li>0){
+            if (li > 0) {
                 active.tabChange(id);
-            }else{
-                active.tabAdd(title,id,uri);
+            } else {
+                active.tabAdd(title, id, uri);
                 active.tabChange(id);
             }
             // active.tabAdd(title, id, uri);

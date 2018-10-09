@@ -1,42 +1,37 @@
 <%--
   Created by IntelliJ IDEA.
   User: 84261
-  Date: 2018/9/19
-  Time: 10:15
+  Date: 2018/9/25
+  Time: 18:38
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>后台管理系统登录</title>
+    <meta charset="utf-8" />
+    <title>登录</title>
     <script type="text/javascript" src="/js/jquery-2.2.4-min.js"></script>
     <link rel="stylesheet" href="/js/layui/css/layui.css"  media="all">
+    <link rel="stylesheet" type="text/css" href="/css/login.css"/>
 </head>
 <body>
-<form action="/loginToIndex" method="post" id="form1">
-    <div style="text-align: center;">
-        <table style="text-align: center;">
-            <tr>
-                <td>用户名：</td>
-                <td><input type="text" id="username" name="username"></td>
-            </tr>
-
-            <tr>
-                <td>密码：</td>
-                <td><input type="password" id="pwd" name="pwd"></td>
-            </tr>
-            <tr>
-                <td><button>登录</button></td>
-            </tr>
-        </table>
-    </div>
-</form>
+<div id="bg">
+    <img src="/image/bgimg.jpg" />
+</div>
+<div id="form">
+    <form action="/loginToIndex" method="post" id="form1">
+        <span>账号</span><input type="text" name="username" id="username" placeholder="请输入账号"/></br></br>
+        <span>密码</span><input type="password" name="pwd" id="pwd" placeholder="请输入密码" /></br></br>
+        <input id="btn" type="button" value="登陆" style="background-color: cornflowerblue; border: none; width: 160px;height:30px;border-radius: 0.25rem; margin-left: 60px;margin-top: 1rem;color: white;" />
+    </form>
+</div>
 </body>
 <script src="/js/layui/layui.js" charset="utf-8"></script>
 <script>
     layui.use('layer', function() {
         var $ = layui.jquery, layer = layui.layer;
-        $('button').on('click', function () {
+        $('#btn').on('click', function () {
+
             var name = $('#username').val();
             var pwd = $('#pwd').val();
             $.ajax({
