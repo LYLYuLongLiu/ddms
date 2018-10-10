@@ -1,0 +1,537 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.wisdsoft.ddms.mapper.teacher.TeacherMapper" >
+  <resultMap id="BaseResultMap" type="cn.wisdsoft.ddms.pojo.Teacher" >
+    <id column="workNumber" property="worknumber" jdbcType="VARCHAR" />
+    <result column="tea_Name" property="teaName" jdbcType="VARCHAR" />
+    <result column="tea_EnglishName" property="teaEnglishname" jdbcType="VARCHAR" />
+    <result column="tea_picture" property="teaPicture" jdbcType="VARCHAR" />
+    <result column="tea_Sex" property="teaSex" jdbcType="CHAR" />
+    <result column="tea_BirthDate" property="teaBirthdate" jdbcType="DATE" />
+    <result column="tea_phone" property="teaPhone" jdbcType="VARCHAR" />
+    <result column="tea_sparePhone" property="teaSparephone" jdbcType="VARCHAR" />
+    <result column="tea_Nation" property="teaNation" jdbcType="VARCHAR" />
+    <result column="tea_Nativeplace" property="teaNativeplace" jdbcType="VARCHAR" />
+    <result column="tea_address" property="teaAddress" jdbcType="VARCHAR" />
+    <result column="tea_politicalFace" property="teaPoliticalface" jdbcType="VARCHAR" />
+    <result column="tea_idcard" property="teaIdcard" jdbcType="VARCHAR" />
+    <result column="tea_maritalStatus" property="teaMaritalstatus" jdbcType="VARCHAR" />
+    <result column="tea_degreeEdu" property="teaDegreeedu" jdbcType="VARCHAR" />
+    <result column="tea_jobTitle" property="teaJobtitle" jdbcType="VARCHAR" />
+    <result column="tea_CJGZNY" property="teaCjgzny" jdbcType="DATE" />
+    <result column="tea_CJNY" property="teaCjny" jdbcType="DATE" />
+    <result column="tea_credentialsTime" property="teaCredentialstime" jdbcType="DATE" />
+    <result column="tea_comeTime" property="teaCometime" jdbcType="DATE" />
+    <result column="tea_RKZK" property="teaRkzk" jdbcType="VARCHAR" />
+    <result column="tea_type" property="teaType" jdbcType="VARCHAR" />
+    <result column="tea_campus" property="teaCampus" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    workNumber, tea_Name, tea_EnglishName, tea_picture, tea_Sex, tea_BirthDate, tea_phone, 
+    tea_sparePhone, tea_Nation, tea_Nativeplace, tea_address, tea_politicalFace, tea_idcard, 
+    tea_maritalStatus, tea_degreeEdu, tea_jobTitle, tea_CJGZNY, tea_CJNY, tea_credentialsTime, 
+    tea_comeTime, tea_RKZK, tea_type, tea_campus, remark
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.wisdsoft.ddms.pojo.TeacherExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from teacher
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from teacher
+    where workNumber = #{worknumber,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from teacher
+    where workNumber = #{worknumber,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.wisdsoft.ddms.pojo.TeacherExample" >
+    delete from teacher
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.wisdsoft.ddms.pojo.Teacher" >
+    insert into teacher (workNumber, tea_Name, tea_EnglishName, 
+      tea_picture, tea_Sex, tea_BirthDate, 
+      tea_phone, tea_sparePhone, tea_Nation, 
+      tea_Nativeplace, tea_address, tea_politicalFace, 
+      tea_idcard, tea_maritalStatus, tea_degreeEdu, 
+      tea_jobTitle, tea_CJGZNY, tea_CJNY, 
+      tea_credentialsTime, tea_comeTime, tea_RKZK, 
+      tea_type, tea_campus, remark
+      )
+    values (#{worknumber,jdbcType=VARCHAR}, #{teaName,jdbcType=VARCHAR}, #{teaEnglishname,jdbcType=VARCHAR}, 
+      #{teaPicture,jdbcType=VARCHAR}, #{teaSex,jdbcType=CHAR}, #{teaBirthdate,jdbcType=DATE}, 
+      #{teaPhone,jdbcType=VARCHAR}, #{teaSparephone,jdbcType=VARCHAR}, #{teaNation,jdbcType=VARCHAR}, 
+      #{teaNativeplace,jdbcType=VARCHAR}, #{teaAddress,jdbcType=VARCHAR}, #{teaPoliticalface,jdbcType=VARCHAR}, 
+      #{teaIdcard,jdbcType=VARCHAR}, #{teaMaritalstatus,jdbcType=VARCHAR}, #{teaDegreeedu,jdbcType=VARCHAR}, 
+      #{teaJobtitle,jdbcType=VARCHAR}, #{teaCjgzny,jdbcType=DATE}, #{teaCjny,jdbcType=DATE}, 
+      #{teaCredentialstime,jdbcType=DATE}, #{teaCometime,jdbcType=DATE}, #{teaRkzk,jdbcType=VARCHAR}, 
+      #{teaType,jdbcType=VARCHAR}, #{teaCampus,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.wisdsoft.ddms.pojo.Teacher" >
+    insert into teacher
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="worknumber != null" >
+        workNumber,
+      </if>
+      <if test="teaName != null" >
+        tea_Name,
+      </if>
+      <if test="teaEnglishname != null" >
+        tea_EnglishName,
+      </if>
+      <if test="teaPicture != null" >
+        tea_picture,
+      </if>
+      <if test="teaSex != null" >
+        tea_Sex,
+      </if>
+      <if test="teaBirthdate != null" >
+        tea_BirthDate,
+      </if>
+      <if test="teaPhone != null" >
+        tea_phone,
+      </if>
+      <if test="teaSparephone != null" >
+        tea_sparePhone,
+      </if>
+      <if test="teaNation != null" >
+        tea_Nation,
+      </if>
+      <if test="teaNativeplace != null" >
+        tea_Nativeplace,
+      </if>
+      <if test="teaAddress != null" >
+        tea_address,
+      </if>
+      <if test="teaPoliticalface != null" >
+        tea_politicalFace,
+      </if>
+      <if test="teaIdcard != null" >
+        tea_idcard,
+      </if>
+      <if test="teaMaritalstatus != null" >
+        tea_maritalStatus,
+      </if>
+      <if test="teaDegreeedu != null" >
+        tea_degreeEdu,
+      </if>
+      <if test="teaJobtitle != null" >
+        tea_jobTitle,
+      </if>
+      <if test="teaCjgzny != null" >
+        tea_CJGZNY,
+      </if>
+      <if test="teaCjny != null" >
+        tea_CJNY,
+      </if>
+      <if test="teaCredentialstime != null" >
+        tea_credentialsTime,
+      </if>
+      <if test="teaCometime != null" >
+        tea_comeTime,
+      </if>
+      <if test="teaRkzk != null" >
+        tea_RKZK,
+      </if>
+      <if test="teaType != null" >
+        tea_type,
+      </if>
+      <if test="teaCampus != null" >
+        tea_campus,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="worknumber != null" >
+        #{worknumber,jdbcType=VARCHAR},
+      </if>
+      <if test="teaName != null" >
+        #{teaName,jdbcType=VARCHAR},
+      </if>
+      <if test="teaEnglishname != null" >
+        #{teaEnglishname,jdbcType=VARCHAR},
+      </if>
+      <if test="teaPicture != null" >
+        #{teaPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="teaSex != null" >
+        #{teaSex,jdbcType=CHAR},
+      </if>
+      <if test="teaBirthdate != null" >
+        #{teaBirthdate,jdbcType=DATE},
+      </if>
+      <if test="teaPhone != null" >
+        #{teaPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="teaSparephone != null" >
+        #{teaSparephone,jdbcType=VARCHAR},
+      </if>
+      <if test="teaNation != null" >
+        #{teaNation,jdbcType=VARCHAR},
+      </if>
+      <if test="teaNativeplace != null" >
+        #{teaNativeplace,jdbcType=VARCHAR},
+      </if>
+      <if test="teaAddress != null" >
+        #{teaAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="teaPoliticalface != null" >
+        #{teaPoliticalface,jdbcType=VARCHAR},
+      </if>
+      <if test="teaIdcard != null" >
+        #{teaIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="teaMaritalstatus != null" >
+        #{teaMaritalstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="teaDegreeedu != null" >
+        #{teaDegreeedu,jdbcType=VARCHAR},
+      </if>
+      <if test="teaJobtitle != null" >
+        #{teaJobtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="teaCjgzny != null" >
+        #{teaCjgzny,jdbcType=DATE},
+      </if>
+      <if test="teaCjny != null" >
+        #{teaCjny,jdbcType=DATE},
+      </if>
+      <if test="teaCredentialstime != null" >
+        #{teaCredentialstime,jdbcType=DATE},
+      </if>
+      <if test="teaCometime != null" >
+        #{teaCometime,jdbcType=DATE},
+      </if>
+      <if test="teaRkzk != null" >
+        #{teaRkzk,jdbcType=VARCHAR},
+      </if>
+      <if test="teaType != null" >
+        #{teaType,jdbcType=VARCHAR},
+      </if>
+      <if test="teaCampus != null" >
+        #{teaCampus,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+    <select id="countByExample" parameterType="cn.wisdsoft.ddms.pojo.TeacherExample" resultType="java.lang.Integer" >
+    select count(*) from teacher
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update teacher
+    <set >
+      <if test="record.worknumber != null" >
+        workNumber = #{record.worknumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.teaName != null" >
+        tea_Name = #{record.teaName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.teaEnglishname != null" >
+        tea_EnglishName = #{record.teaEnglishname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.teaPicture != null" >
+        tea_picture = #{record.teaPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="record.teaSex != null" >
+        tea_Sex = #{record.teaSex,jdbcType=CHAR},
+      </if>
+      <if test="record.teaBirthdate != null" >
+        tea_BirthDate = #{record.teaBirthdate,jdbcType=DATE},
+      </if>
+      <if test="record.teaPhone != null" >
+        tea_phone = #{record.teaPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.teaSparephone != null" >
+        tea_sparePhone = #{record.teaSparephone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.teaNation != null" >
+        tea_Nation = #{record.teaNation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.teaNativeplace != null" >
+        tea_Nativeplace = #{record.teaNativeplace,jdbcType=VARCHAR},
+      </if>
+      <if test="record.teaAddress != null" >
+        tea_address = #{record.teaAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.teaPoliticalface != null" >
+        tea_politicalFace = #{record.teaPoliticalface,jdbcType=VARCHAR},
+      </if>
+      <if test="record.teaIdcard != null" >
+        tea_idcard = #{record.teaIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.teaMaritalstatus != null" >
+        tea_maritalStatus = #{record.teaMaritalstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.teaDegreeedu != null" >
+        tea_degreeEdu = #{record.teaDegreeedu,jdbcType=VARCHAR},
+      </if>
+      <if test="record.teaJobtitle != null" >
+        tea_jobTitle = #{record.teaJobtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.teaCjgzny != null" >
+        tea_CJGZNY = #{record.teaCjgzny,jdbcType=DATE},
+      </if>
+      <if test="record.teaCjny != null" >
+        tea_CJNY = #{record.teaCjny,jdbcType=DATE},
+      </if>
+      <if test="record.teaCredentialstime != null" >
+        tea_credentialsTime = #{record.teaCredentialstime,jdbcType=DATE},
+      </if>
+      <if test="record.teaCometime != null" >
+        tea_comeTime = #{record.teaCometime,jdbcType=DATE},
+      </if>
+      <if test="record.teaRkzk != null" >
+        tea_RKZK = #{record.teaRkzk,jdbcType=VARCHAR},
+      </if>
+      <if test="record.teaType != null" >
+        tea_type = #{record.teaType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.teaCampus != null" >
+        tea_campus = #{record.teaCampus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update teacher
+    set workNumber = #{record.worknumber,jdbcType=VARCHAR},
+      tea_Name = #{record.teaName,jdbcType=VARCHAR},
+      tea_EnglishName = #{record.teaEnglishname,jdbcType=VARCHAR},
+      tea_picture = #{record.teaPicture,jdbcType=VARCHAR},
+      tea_Sex = #{record.teaSex,jdbcType=CHAR},
+      tea_BirthDate = #{record.teaBirthdate,jdbcType=DATE},
+      tea_phone = #{record.teaPhone,jdbcType=VARCHAR},
+      tea_sparePhone = #{record.teaSparephone,jdbcType=VARCHAR},
+      tea_Nation = #{record.teaNation,jdbcType=VARCHAR},
+      tea_Nativeplace = #{record.teaNativeplace,jdbcType=VARCHAR},
+      tea_address = #{record.teaAddress,jdbcType=VARCHAR},
+      tea_politicalFace = #{record.teaPoliticalface,jdbcType=VARCHAR},
+      tea_idcard = #{record.teaIdcard,jdbcType=VARCHAR},
+      tea_maritalStatus = #{record.teaMaritalstatus,jdbcType=VARCHAR},
+      tea_degreeEdu = #{record.teaDegreeedu,jdbcType=VARCHAR},
+      tea_jobTitle = #{record.teaJobtitle,jdbcType=VARCHAR},
+      tea_CJGZNY = #{record.teaCjgzny,jdbcType=DATE},
+      tea_CJNY = #{record.teaCjny,jdbcType=DATE},
+      tea_credentialsTime = #{record.teaCredentialstime,jdbcType=DATE},
+      tea_comeTime = #{record.teaCometime,jdbcType=DATE},
+      tea_RKZK = #{record.teaRkzk,jdbcType=VARCHAR},
+      tea_type = #{record.teaType,jdbcType=VARCHAR},
+      tea_campus = #{record.teaCampus,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.wisdsoft.ddms.pojo.Teacher" >
+    update teacher
+    <set >
+      <if test="teaName != null" >
+        tea_Name = #{teaName,jdbcType=VARCHAR},
+      </if>
+      <if test="teaEnglishname != null" >
+        tea_EnglishName = #{teaEnglishname,jdbcType=VARCHAR},
+      </if>
+      <if test="teaPicture != null" >
+        tea_picture = #{teaPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="teaSex != null" >
+        tea_Sex = #{teaSex,jdbcType=CHAR},
+      </if>
+      <if test="teaBirthdate != null" >
+        tea_BirthDate = #{teaBirthdate,jdbcType=DATE},
+      </if>
+      <if test="teaPhone != null" >
+        tea_phone = #{teaPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="teaSparephone != null" >
+        tea_sparePhone = #{teaSparephone,jdbcType=VARCHAR},
+      </if>
+      <if test="teaNation != null" >
+        tea_Nation = #{teaNation,jdbcType=VARCHAR},
+      </if>
+      <if test="teaNativeplace != null" >
+        tea_Nativeplace = #{teaNativeplace,jdbcType=VARCHAR},
+      </if>
+      <if test="teaAddress != null" >
+        tea_address = #{teaAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="teaPoliticalface != null" >
+        tea_politicalFace = #{teaPoliticalface,jdbcType=VARCHAR},
+      </if>
+      <if test="teaIdcard != null" >
+        tea_idcard = #{teaIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="teaMaritalstatus != null" >
+        tea_maritalStatus = #{teaMaritalstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="teaDegreeedu != null" >
+        tea_degreeEdu = #{teaDegreeedu,jdbcType=VARCHAR},
+      </if>
+      <if test="teaJobtitle != null" >
+        tea_jobTitle = #{teaJobtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="teaCjgzny != null" >
+        tea_CJGZNY = #{teaCjgzny,jdbcType=DATE},
+      </if>
+      <if test="teaCjny != null" >
+        tea_CJNY = #{teaCjny,jdbcType=DATE},
+      </if>
+      <if test="teaCredentialstime != null" >
+        tea_credentialsTime = #{teaCredentialstime,jdbcType=DATE},
+      </if>
+      <if test="teaCometime != null" >
+        tea_comeTime = #{teaCometime,jdbcType=DATE},
+      </if>
+      <if test="teaRkzk != null" >
+        tea_RKZK = #{teaRkzk,jdbcType=VARCHAR},
+      </if>
+      <if test="teaType != null" >
+        tea_type = #{teaType,jdbcType=VARCHAR},
+      </if>
+      <if test="teaCampus != null" >
+        tea_campus = #{teaCampus,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where workNumber = #{worknumber,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.wisdsoft.ddms.pojo.Teacher" >
+    update teacher
+    set tea_Name = #{teaName,jdbcType=VARCHAR},
+      tea_EnglishName = #{teaEnglishname,jdbcType=VARCHAR},
+      tea_picture = #{teaPicture,jdbcType=VARCHAR},
+      tea_Sex = #{teaSex,jdbcType=CHAR},
+      tea_BirthDate = #{teaBirthdate,jdbcType=DATE},
+      tea_phone = #{teaPhone,jdbcType=VARCHAR},
+      tea_sparePhone = #{teaSparephone,jdbcType=VARCHAR},
+      tea_Nation = #{teaNation,jdbcType=VARCHAR},
+      tea_Nativeplace = #{teaNativeplace,jdbcType=VARCHAR},
+      tea_address = #{teaAddress,jdbcType=VARCHAR},
+      tea_politicalFace = #{teaPoliticalface,jdbcType=VARCHAR},
+      tea_idcard = #{teaIdcard,jdbcType=VARCHAR},
+      tea_maritalStatus = #{teaMaritalstatus,jdbcType=VARCHAR},
+      tea_degreeEdu = #{teaDegreeedu,jdbcType=VARCHAR},
+      tea_jobTitle = #{teaJobtitle,jdbcType=VARCHAR},
+      tea_CJGZNY = #{teaCjgzny,jdbcType=DATE},
+      tea_CJNY = #{teaCjny,jdbcType=DATE},
+      tea_credentialsTime = #{teaCredentialstime,jdbcType=DATE},
+      tea_comeTime = #{teaCometime,jdbcType=DATE},
+      tea_RKZK = #{teaRkzk,jdbcType=VARCHAR},
+      tea_type = #{teaType,jdbcType=VARCHAR},
+      tea_campus = #{teaCampus,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where workNumber = #{worknumber,jdbcType=VARCHAR}
+  </update>
+
+  <select id="queryCondition" resultType="cn.wisdsoft.ddms.pojo.Teacher" parameterType="string" >
+    SELECT * FROM teacher <if test="condition neq '' and condition != null">WHERE workNumber LIKE  CONCAT(CONCAT('%',#{condition}),'%') OR tea_Name LIKE CONCAT(CONCAT('%',#{condition}),'%') OR tea_jobTitle LIKE CONCAT(CONCAT('%',#{condition}),'%')</if>
+  </select>
+
+  <insert id="importExcel">
+    insert into teacher (workNumber, tea_Name, tea_EnglishName,
+       tea_Sex, tea_BirthDate,
+      tea_phone, tea_sparePhone, tea_Nation,
+      tea_Nativeplace, tea_address, tea_politicalFace,
+      tea_idcard, tea_maritalStatus, tea_degreeEdu,
+      tea_jobTitle, tea_CJGZNY, tea_CJNY,
+      tea_credentialsTime, tea_comeTime, tea_RKZK,
+      tea_type, tea_campus
+      )
+    values
+    <foreach collection="list" index="index" separator="," item="item">
+      ('${item[0]}', '${item[1]}', '${item[2]}', '${item[3]}', '${item[4]}', '${item[5]}'
+      , '${item[6]}', '${item[7]}', '${item[8]}', '${item[9]}', '${item[10]}', '${item[11]}'
+      , '${item[12]}', '${item[13]}', '${item[14]}', '${item[15]}', '${item[16]}', '${item[17]}'
+      , '${item[18]}', '${item[19]}', '${item[20]}', '${item[21]}')
+    </foreach>
+  </insert>
+</mapper>

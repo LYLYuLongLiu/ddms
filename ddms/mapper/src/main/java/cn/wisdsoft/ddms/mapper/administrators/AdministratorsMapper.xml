@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.wisdsoft.ddms.mapper.administrators.AdministratorsMapper" >
+	<select id="queryAdminByAccnumAndPassword" resultType="cn.wisdsoft.ddms.pojo.Administrators">
+		SELECT * FROM administrators WHERE admin_accNum = #{admin_accNum} AND admin_password = #{admin_password}
+	</select>
+	<select id="queryAllAdmin" resultType="cn.wisdsoft.ddms.pojo.Administrators">
+		SELECT * FROM administrators WHERE remark IS NULL LIMIT #{page},#{limit}
+	</select>
+	<select id="queryCountForAdministrator" resultType="Integer">
+		SELECT COUNT(*) FROM administrators WHERE remark IS NULL
+	</select>
+	<select id="selectPwdByAccnum" resultType="cn.wisdsoft.ddms.pojo.Administrators">
+		SELECT * FROM administrators WHERE admin_accNum = #{accNum}
+	</select>
+	<insert id="insertAdministrator">
+		INSERT INTO administrators(admin_accNum,admin_password)
+        VALUES(#{administrators.adminAccnum},#{administrators.adminPassword})
+	</insert>
+    <update id="updatePwdByAccNum">
+        UPDATE administrators SET admin_password = #{newPwd} WHERE admin_accNum = #{accNum}
+    </update>
+	<delete id="delAdministrator">
+		DELETE FROM administrators WHERE id = #{#id}
+	</delete>
+</mapper>

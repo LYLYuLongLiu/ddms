@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.wisdsoft.ddms.mapper.clazz.ClazzMapper" >
+  <resultMap id="BaseResultMap" type="cn.wisdsoft.ddms.pojo.Clazz" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="clazz_name" property="clazzName" jdbcType="VARCHAR" />
+    <result column="clazz_num" property="clazzNum" jdbcType="INTEGER" />
+    <result column="clazz_majorid" property="clazzMajorid" jdbcType="VARCHAR" />
+    <result column="collegeid" property="collegeid" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, clazz_name, clazz_num, clazz_majorid, collegeid, remark
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.wisdsoft.ddms.pojo.ClazzExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from clazz
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from clazz
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from clazz
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.wisdsoft.ddms.pojo.ClazzExample" >
+    delete from clazz
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.wisdsoft.ddms.pojo.Clazz" >
+    insert into clazz (id, clazz_name, clazz_num, 
+      clazz_majorid, collegeid, remark
+      )
+    values (#{id,jdbcType=VARCHAR}, #{clazzName,jdbcType=VARCHAR}, #{clazzNum,jdbcType=INTEGER}, 
+      #{clazzMajorid,jdbcType=VARCHAR}, #{collegeid,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.wisdsoft.ddms.pojo.Clazz" >
+    insert into clazz
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="clazzName != null" >
+        clazz_name,
+      </if>
+      <if test="clazzNum != null" >
+        clazz_num,
+      </if>
+      <if test="clazzMajorid != null" >
+        clazz_majorid,
+      </if>
+      <if test="collegeid != null" >
+        collegeid,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="clazzName != null" >
+        #{clazzName,jdbcType=VARCHAR},
+      </if>
+      <if test="clazzNum != null" >
+        #{clazzNum,jdbcType=INTEGER},
+      </if>
+      <if test="clazzMajorid != null" >
+        #{clazzMajorid,jdbcType=VARCHAR},
+      </if>
+      <if test="collegeid != null" >
+        #{collegeid,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.wisdsoft.ddms.pojo.ClazzExample" resultType="java.lang.Integer" >
+    select count(*) from clazz
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update clazz
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clazzName != null" >
+        clazz_name = #{record.clazzName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clazzNum != null" >
+        clazz_num = #{record.clazzNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.clazzMajorid != null" >
+        clazz_majorid = #{record.clazzMajorid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.collegeid != null" >
+        collegeid = #{record.collegeid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update clazz
+    set id = #{record.id,jdbcType=VARCHAR},
+      clazz_name = #{record.clazzName,jdbcType=VARCHAR},
+      clazz_num = #{record.clazzNum,jdbcType=INTEGER},
+      clazz_majorid = #{record.clazzMajorid,jdbcType=VARCHAR},
+      collegeid = #{record.collegeid,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.wisdsoft.ddms.pojo.Clazz" >
+    update clazz
+    <set >
+      <if test="clazzName != null" >
+        clazz_name = #{clazzName,jdbcType=VARCHAR},
+      </if>
+      <if test="clazzNum != null" >
+        clazz_num = #{clazzNum,jdbcType=INTEGER},
+      </if>
+      <if test="clazzMajorid != null" >
+        clazz_majorid = #{clazzMajorid,jdbcType=VARCHAR},
+      </if>
+      <if test="collegeid != null" >
+        collegeid = #{collegeid,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.wisdsoft.ddms.pojo.Clazz" >
+    update clazz
+    set clazz_name = #{clazzName,jdbcType=VARCHAR},
+      clazz_num = #{clazzNum,jdbcType=INTEGER},
+      clazz_majorid = #{clazzMajorid,jdbcType=VARCHAR},
+      collegeid = #{collegeid,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+
+  <!--通过班级名称或者专业名称查询班级信息-->
+  <select id="selectByclazzNameOrmajorName" resultType="cn.wisdsoft.ddms.pojo.Clazz" parameterType="cn.wisdsoft.ddms.pojo.Clazz" >
+    select c.id,c.clazz_name,c.clazz_num,c.clazz_majorid,c.collegeid,c.remark,m.id,m.major_name,d.id,d.college_name
+    from clazz as c inner join major as m inner join college as d
+    where
+    c.clazz_majorid = m.id and c.collegeid = d.id
+      <if test="clazzName !=null and clazzName !=''">
+        AND clazz_name like '%${clazzName}%'
+      </if>
+      <if test="majorName !=null and  majorName!=''">
+        AND major_name like '%${majorName}%'
+      </if>
+    ORDER BY c.id DESC
+  </select>
+
+  <!--高伟萌要的方法1-->
+  <select id="selectNameById" resultType="cn.wisdsoft.ddms.pojo.Clazz" parameterType="cn.wisdsoft.ddms.pojo.Clazz" >
+    select clazz_name
+    from clazz
+    where id = #{id}
+  </select>
+
+
+  <!--高伟萌要的方法2-->
+  <select id="selectIdByName" resultType="cn.wisdsoft.ddms.pojo.Clazz" parameterType="cn.wisdsoft.ddms.pojo.Clazz" >
+    select id
+    from clazz
+    where clazz_name = #{clazzName}
+  </select>
+
+
+  <!--高伟萌要的方法3-->
+  <select id="selectAllName" resultType="cn.wisdsoft.ddms.pojo.Clazz" >
+    select clazz_name,id from clazz
+  </select>
+
+  <!--查询所有和班级有关的信息-->
+  <select id="selectAllClazz" resultType="cn.wisdsoft.ddms.pojo.Clazz" parameterType="cn.wisdsoft.ddms.pojo.Clazz">
+    select c.id,c.clazz_name,c.clazz_num,c.clazz_majorid,c.collegeid,c.remark,m.id,m.major_name,d.id,d.college_name
+    from clazz as c inner join major as m inner join college as d
+    where
+    c.clazz_majorid = m.id and c.collegeid = d.id
+  </select>
+
+
+  <!--查询最大id-->
+  <select id="selclazzmaxid" resultType="String">
+		SELECT MAX( id ) id FROM clazz
+	</select>
+
+  <!--班级导入功能停用-->
+  <!--&lt;!&ndash;插入数据导入用&ndash;&gt;-->
+  <!--<insert id="insertSalesClazz">-->
+    <!--insert into clazz (id,clazz_name,clazz_num,clazz_majorid,collegeid)-->
+    <!--values-->
+    <!--<foreach collection="list" item="item" index="index" separator=",">-->
+      <!--('${item[0]}','${item[1]}')-->
+    <!--</foreach>-->
+  <!--</insert>-->
+</mapper>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.wisdsoft.ddms.mapper.logfile.LogfileMapper" >
+  <insert id="insert" parameterType="cn.wisdsoft.ddms.pojo.Logfile" >
+    insert into logfile (id, log_name, log_method, 
+      log_time, remark)
+    values (#{id,jdbcType=INTEGER}, #{logName,jdbcType=VARCHAR}, #{logMethod,jdbcType=VARCHAR}, 
+      #{logTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
+  </insert>
+</mapper>
